@@ -1,0 +1,49 @@
+=== LoggingFramework Demo ===
+
+1. Basic Logging Demo:
+----------------------
+[DEBUG] 2026-07-30T11:04:17.759203900Z - This is a debug message
+[INFO] 2026-07-30T11:04:17.772203800Z - This is an info message
+[WARNING] 2026-07-30T11:04:17.772203800Z - This is a warning message
+[ERROR] 2026-07-30T11:04:17.772203800Z - This is an error message
+[FATAL] 2026-07-30T11:04:17.773203200Z - This is a fatal message
+
+2. Multiple Appenders Demo:
+---------------------------
+[INFO] 2026-07-30T11:04:17.776202300Z - This message goes to both console and file
+[ERROR] 2026-07-30T11:04:17.777203600Z - This error also goes to both destinations
+Check 'demo.log' file for the logged messages
+
+3. Custom Formatters Demo:
+--------------------------
+[INFO] 2026-07-30T11:04:17.779211Z - This message uses custom formatting
+[INFO] 2026-07-30T11:04:17.779211Z - This message uses custom formatting
+[ERROR] 2026-07-30T11:04:17.780207500Z - This error also uses custom formatting
+[ERROR] 2026-07-30T11:04:17.780207500Z - This error also uses custom formatting
+
+4. Filters Demo:
+----------------
+[WARNING] 2026-07-30T11:04:17.782211700Z - This warning message will be shown
+[ERROR] 2026-07-30T11:04:17.782211700Z - This error message will be shown
+
+5. Thread Safety Demo:
+----------------------
+[INFO] 2026-07-30T11:04:17.790204700Z - Thread 3 - Message 0
+[INFO] 2026-07-30T11:04:17.790204700Z - Thread 4 - Message 0
+[INFO] 2026-07-30T11:04:17.790204700Z - Thread 0 - Message 0
+[INFO] 2026-07-30T11:04:17.791204600Z - Thread 1 - Message 0
+[INFO] 2026-07-30T11:04:17.792207900Z - Thread 2 - Message 0
+[INFO] 2026-07-30T11:04:17.802217500Z - Thread 0 - Message 1
+[INFO] 2026-07-30T11:04:17.802217500Z - Thread 3 - Message 1
+[INFO] 2026-07-30T11:04:17.802217500Z - Thread 4 - Message 1
+[INFO] 2026-07-30T11:04:17.804224Z - Thread 1 - Message 1
+[INFO] 2026-07-30T11:04:17.804224Z - Thread 2 - Message 1
+[INFO] 2026-07-30T11:04:17.812764500Z - Thread 0 - Message 2
+[INFO] 2026-07-30T11:04:17.814342700Z - Thread 4 - Message 2
+[INFO] 2026-07-30T11:04:17.814342700Z - Thread 3 - Message 2
+[INFO] 2026-07-30T11:04:17.816339600Z - Thread 1 - Message 2
+[INFO] 2026-07-30T11:04:17.816339600Z - Thread 2 - Message 2
+All threads completed - check for any mixed-up messages above
+
+
+=== Demo Complete ===

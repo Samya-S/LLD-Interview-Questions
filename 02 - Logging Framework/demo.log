@@ -1,0 +1,2 @@
+[INFO] 2026-07-30T11:04:17.776202300Z - This message goes to both console and file
+[ERROR] 2026-07-30T11:04:17.777203600Z - This error also goes to both destinations
