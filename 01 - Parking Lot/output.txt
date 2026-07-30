@@ -1,0 +1,259 @@
+=== PARKING LOT LLD SIMULATION ===
+This simulation demonstrates the complete parking lot system flow
+
+[SERVICE] PaymentService initialized with default gateway: Razorpay
+[SERVICE] ReceiptService initialized
+[SERVICE] AdminService initialized
+[CONTROLLER] EntryController initialized
+[CONTROLLER] ExitController initialized
+[CONTROLLER] AdminController initialized
+=== INITIALIZATION PHASE ===
+[CONTROLLER] Admin request to initialize parking lot
+[SERVICE] Initializing parking lot with default configuration
+[SERVICE] Adding floor with number: 0
+[SERVICE] Floor added successfully: 9244a9ba-80d2-427c-a7c6-dfeb6c62fae0
+[SERVICE] Adding floor with number: 1
+[SERVICE] Floor added successfully: 8168313a-9e12-4a83-b245-fa9f095978dd
+[SERVICE] Adding floor with number: 2
+[SERVICE] Floor added successfully: 6b75594e-a32d-441b-ab5b-5022b8a7f78e
+[SERVICE] Adding 20 slots of type BIKE to floor 0
+[SERVICE] Added 20 slots to floor 0
+[SERVICE] Adding 30 slots of type CAR to floor 0
+[SERVICE] Added 30 slots to floor 0
+[SERVICE] Adding 5 slots of type TRUCK to floor 0
+[SERVICE] Added 5 slots to floor 0
+[SERVICE] Adding 40 slots of type CAR to floor 1
+[SERVICE] Added 40 slots to floor 1
+[SERVICE] Adding 10 slots of type EV to floor 1
+[SERVICE] Added 10 slots to floor 1
+[SERVICE] Adding 35 slots of type CAR to floor 2
+[SERVICE] Added 35 slots to floor 2
+[SERVICE] Adding 15 slots of type EV to floor 2
+[SERVICE] Added 15 slots to floor 2
+[REPOSITORY] Initializing default pricing rules
+[SERVICE] Parking lot initialization completed
+[CONTROLLER] Parking lot initialized successfully by admin
+[CONTROLLER] Admin request to get parking status
+[SERVICE] Getting parking lot status
+[SERVICE] Total floors: 3
+[SERVICE] Floor 1 has 50 slots
+[SERVICE] Floor 2 has 50 slots
+[SERVICE] Floor 0 has 55 slots
+[SERVICE] Slot statistics: {CAR=105, TRUCK=5, EV=25, BIKE=20}
+[CONTROLLER] Parking status retrieved successfully by admin
+
+=== ENTRY FLOW SIMULATION ===
+
+--- Vehicle Entry Simulation ---
+[CONTROLLER] Vehicle entry request - License: ABC123, Type: CAR
+[CONTROLLER] Vehicle created: 42c4b942-c0e4-4360-99e5-d70a1bcde959
+[SERVICE] Allocating slot for vehicle type: CAR
+[SERVICE] Slot allocated successfully: ec0e0a59-39d1-40e3-b60f-df892d055de1
+[SERVICE] Generating ticket for vehicle: ABC123
+[SERVICE] Ticket generated successfully: 6adf3f1f-3dbd-4fb7-b070-fe7b79588979
+[CONTROLLER] Vehicle entry successful - Ticket: 6adf3f1f-3dbd-4fb7-b070-fe7b79588979, Slot: ec0e0a59-39d1-40e3-b60f-df892d055de1
+? Entry successful - Ticket ID: 6adf3f1f-3dbd-4fb7-b070-fe7b79588979
+
+--- Vehicle Entry Simulation ---
+[CONTROLLER] Vehicle entry request - License: XYZ789, Type: BIKE
+[CONTROLLER] Vehicle created: 1fefcdb3-7f55-4c5a-8458-07b941a76565
+[SERVICE] Allocating slot for vehicle type: BIKE
+[SERVICE] Slot allocated successfully: 8c7e9292-f5d4-4e7a-844e-f4320426881f
+[SERVICE] Generating ticket for vehicle: XYZ789
+[SERVICE] Ticket generated successfully: 9d4d5aec-1c32-468a-8f1c-413758c26bf5
+[CONTROLLER] Vehicle entry successful - Ticket: 9d4d5aec-1c32-468a-8f1c-413758c26bf5, Slot: 8c7e9292-f5d4-4e7a-844e-f4320426881f
+? Entry successful - Ticket ID: 9d4d5aec-1c32-468a-8f1c-413758c26bf5
+
+--- Vehicle Entry Simulation ---
+[CONTROLLER] Vehicle entry request - License: DEF456, Type: TRUCK
+[CONTROLLER] Vehicle created: 4ddd9d8c-bd62-45e0-b7b2-ab0207e78def
+[SERVICE] Allocating slot for vehicle type: TRUCK
+[SERVICE] Slot allocated successfully: fa7ce106-b3a0-466f-9351-f55362c07979
+[SERVICE] Generating ticket for vehicle: DEF456
+[SERVICE] Ticket generated successfully: 1194e3ef-6eaf-4be1-805a-756f7e92883d
+[CONTROLLER] Vehicle entry successful - Ticket: 1194e3ef-6eaf-4be1-805a-756f7e92883d, Slot: fa7ce106-b3a0-466f-9351-f55362c07979
+? Entry successful - Ticket ID: 1194e3ef-6eaf-4be1-805a-756f7e92883d
+
+=== EXIT FLOW SIMULATION ===
+[REPOSITORY] Found 3 active tickets
+
+--- Vehicle Exit Simulation ---
+[CONTROLLER] Vehicle exit request - Ticket: 6adf3f1f-3dbd-4fb7-b070-fe7b79588979
+[SERVICE] Retrieving ticket: 6adf3f1f-3dbd-4fb7-b070-fe7b79588979
+[SERVICE] Calculating fee for ticket: 6adf3f1f-3dbd-4fb7-b070-fe7b79588979
+[SERVICE] Flat fee: 60.0, Hourly fee: 20.0, Final fee: 20.0 for vehicle type: CAR
+[CONTROLLER] Fee calculated: 20.0
+[SERVICE] Processing payment with retry for ticket: 6adf3f1f-3dbd-4fb7-b070-fe7b79588979
+[SERVICE] Payment attempt 1 of 3
+[SERVICE] Processing payment for ticket: 6adf3f1f-3dbd-4fb7-b070-fe7b79588979 amount: 20.0
+[ADAPTER] RazorpayAdapter processing payment for ticket: 6adf3f1f-3dbd-4fb7-b070-fe7b79588979 amount: 20.0
+[ADAPTER] RazorpayAdapter payment result: SUCCESS
+[SERVICE] Payment processed with status: SUCCESS
+[SERVICE] Payment successful on attempt 1
+[SERVICE] Generating receipt for ticket: 6adf3f1f-3dbd-4fb7-b070-fe7b79588979
+[SERVICE] Receipt generated: 89165e58-f127-484b-93f8-0c93baff4971 with fee: 20.0
+[SERVICE] Marking receipt as paid: 89165e58-f127-484b-93f8-0c93baff4971
+[SERVICE] Receipt marked as paid successfully
+[SERVICE] Releasing slot: ec0e0a59-39d1-40e3-b60f-df892d055de1
+[SERVICE] Slot released successfully: ec0e0a59-39d1-40e3-b60f-df892d055de1
+[SERVICE] Deactivating ticket: 6adf3f1f-3dbd-4fb7-b070-fe7b79588979
+[CONTROLLER] Vehicle exit successful - Receipt: 89165e58-f127-484b-93f8-0c93baff4971
+? Exit successful - Receipt ID: 89165e58-f127-484b-93f8-0c93baff4971
+? Total Fee: $20.00
+? Payment Status: SUCCESS
+[CONTROLLER] Generating receipt text for ticket: 6adf3f1f-3dbd-4fb7-b070-fe7b79588979
+[SERVICE] Retrieving ticket: 6adf3f1f-3dbd-4fb7-b070-fe7b79588979
+[SERVICE] Calculating fee for ticket: 6adf3f1f-3dbd-4fb7-b070-fe7b79588979
+[SERVICE] Flat fee: 60.0, Hourly fee: 20.0, Final fee: 20.0 for vehicle type: CAR
+[SERVICE] Generating receipt for ticket: 6adf3f1f-3dbd-4fb7-b070-fe7b79588979
+[SERVICE] Receipt generated: 916bce52-637b-4fbc-a446-5a834844542d with fee: 20.0
+[SERVICE] Generating receipt text for: 916bce52-637b-4fbc-a446-5a834844542d
+[SERVICE] Receipt text generated successfully
+[CONTROLLER] Receipt text generated successfully
+? Receipt:
+=== PARKING RECEIPT ===
+Receipt ID: 916bce52-637b-4fbc-a446-5a834844542d
+Ticket ID: 6adf3f1f-3dbd-4fb7-b070-fe7b79588979
+Vehicle: DUMMY-6adf3f1f-3dbd-4fb7-b070-fe7b79588979 (CAR)
+Entry Time: 2026-07-30T15:39:30.609417200
+Exit Time: 2026-07-30T15:39:30.687452900
+Total Fee: $20.00
+Payment Status: PENDING
+=====================
+
+
+--- Vehicle Exit Simulation ---
+[CONTROLLER] Vehicle exit request - Ticket: 9d4d5aec-1c32-468a-8f1c-413758c26bf5
+[SERVICE] Retrieving ticket: 9d4d5aec-1c32-468a-8f1c-413758c26bf5
+[SERVICE] Calculating fee for ticket: 9d4d5aec-1c32-468a-8f1c-413758c26bf5
+[SERVICE] Flat fee: 60.0, Hourly fee: 20.0, Final fee: 20.0 for vehicle type: CAR
+[CONTROLLER] Fee calculated: 20.0
+[SERVICE] Processing payment with retry for ticket: 9d4d5aec-1c32-468a-8f1c-413758c26bf5
+[SERVICE] Payment attempt 1 of 3
+[SERVICE] Processing payment for ticket: 9d4d5aec-1c32-468a-8f1c-413758c26bf5 amount: 20.0
+[ADAPTER] RazorpayAdapter processing payment for ticket: 9d4d5aec-1c32-468a-8f1c-413758c26bf5 amount: 20.0  
+[ADAPTER] RazorpayAdapter payment result: SUCCESS
+[SERVICE] Payment processed with status: SUCCESS
+[SERVICE] Payment successful on attempt 1
+[SERVICE] Generating receipt for ticket: 9d4d5aec-1c32-468a-8f1c-413758c26bf5
+[SERVICE] Receipt generated: 2a84ed6c-ddfb-4265-9e02-86f9243b1e3a with fee: 20.0
+[SERVICE] Marking receipt as paid: 2a84ed6c-ddfb-4265-9e02-86f9243b1e3a
+[SERVICE] Receipt marked as paid successfully
+[SERVICE] Releasing slot: 8c7e9292-f5d4-4e7a-844e-f4320426881f
+[SERVICE] Slot released successfully: 8c7e9292-f5d4-4e7a-844e-f4320426881f
+[SERVICE] Deactivating ticket: 9d4d5aec-1c32-468a-8f1c-413758c26bf5
+[CONTROLLER] Vehicle exit successful - Receipt: 2a84ed6c-ddfb-4265-9e02-86f9243b1e3a
+? Exit successful - Receipt ID: 2a84ed6c-ddfb-4265-9e02-86f9243b1e3a
+? Total Fee: $20.00
+? Payment Status: SUCCESS
+[CONTROLLER] Generating receipt text for ticket: 9d4d5aec-1c32-468a-8f1c-413758c26bf5
+[SERVICE] Retrieving ticket: 9d4d5aec-1c32-468a-8f1c-413758c26bf5
+[SERVICE] Calculating fee for ticket: 9d4d5aec-1c32-468a-8f1c-413758c26bf5
+[SERVICE] Flat fee: 60.0, Hourly fee: 20.0, Final fee: 20.0 for vehicle type: CAR
+[SERVICE] Generating receipt for ticket: 9d4d5aec-1c32-468a-8f1c-413758c26bf5
+[SERVICE] Receipt generated: 4f729d46-0f32-42d5-910a-688efb8a54fd with fee: 20.0
+[SERVICE] Generating receipt text for: 4f729d46-0f32-42d5-910a-688efb8a54fd
+[SERVICE] Receipt text generated successfully
+[CONTROLLER] Receipt text generated successfully
+? Receipt:
+=== PARKING RECEIPT ===
+Receipt ID: 4f729d46-0f32-42d5-910a-688efb8a54fd
+Ticket ID: 9d4d5aec-1c32-468a-8f1c-413758c26bf5
+Vehicle: DUMMY-9d4d5aec-1c32-468a-8f1c-413758c26bf5 (CAR)
+Entry Time: 2026-07-30T15:39:30.614410500
+Exit Time: 2026-07-30T15:39:30.695831300
+Total Fee: $20.00
+Payment Status: PENDING
+=====================
+
+
+--- Vehicle Exit Simulation ---
+[CONTROLLER] Vehicle exit request - Ticket: 1194e3ef-6eaf-4be1-805a-756f7e92883d
+[SERVICE] Retrieving ticket: 1194e3ef-6eaf-4be1-805a-756f7e92883d
+[SERVICE] Calculating fee for ticket: 1194e3ef-6eaf-4be1-805a-756f7e92883d
+[SERVICE] Flat fee: 60.0, Hourly fee: 20.0, Final fee: 20.0 for vehicle type: CAR
+[CONTROLLER] Fee calculated: 20.0
+[SERVICE] Processing payment with retry for ticket: 1194e3ef-6eaf-4be1-805a-756f7e92883d
+[SERVICE] Payment attempt 1 of 3
+[SERVICE] Processing payment for ticket: 1194e3ef-6eaf-4be1-805a-756f7e92883d amount: 20.0
+[ADAPTER] RazorpayAdapter processing payment for ticket: 1194e3ef-6eaf-4be1-805a-756f7e92883d amount: 20.0  
+[ADAPTER] RazorpayAdapter payment result: SUCCESS
+[SERVICE] Payment processed with status: SUCCESS
+[SERVICE] Payment successful on attempt 1
+[SERVICE] Generating receipt for ticket: 1194e3ef-6eaf-4be1-805a-756f7e92883d
+[SERVICE] Receipt generated: e7a5392b-8d38-4dd5-88db-82a24ba0a0d6 with fee: 20.0
+[SERVICE] Marking receipt as paid: e7a5392b-8d38-4dd5-88db-82a24ba0a0d6
+[SERVICE] Receipt marked as paid successfully
+[SERVICE] Releasing slot: fa7ce106-b3a0-466f-9351-f55362c07979
+[SERVICE] Slot released successfully: fa7ce106-b3a0-466f-9351-f55362c07979
+[SERVICE] Deactivating ticket: 1194e3ef-6eaf-4be1-805a-756f7e92883d
+[CONTROLLER] Vehicle exit successful - Receipt: e7a5392b-8d38-4dd5-88db-82a24ba0a0d6
+? Exit successful - Receipt ID: e7a5392b-8d38-4dd5-88db-82a24ba0a0d6
+? Total Fee: $20.00
+? Payment Status: SUCCESS
+[CONTROLLER] Generating receipt text for ticket: 1194e3ef-6eaf-4be1-805a-756f7e92883d
+[SERVICE] Retrieving ticket: 1194e3ef-6eaf-4be1-805a-756f7e92883d
+[SERVICE] Calculating fee for ticket: 1194e3ef-6eaf-4be1-805a-756f7e92883d
+[SERVICE] Flat fee: 60.0, Hourly fee: 20.0, Final fee: 20.0 for vehicle type: CAR
+[SERVICE] Generating receipt for ticket: 1194e3ef-6eaf-4be1-805a-756f7e92883d
+[SERVICE] Receipt generated: 504cd39b-f1f8-4ad4-9e37-23c635ad9085 with fee: 20.0
+[SERVICE] Generating receipt text for: 504cd39b-f1f8-4ad4-9e37-23c635ad9085
+[SERVICE] Receipt text generated successfully
+[CONTROLLER] Receipt text generated successfully
+? Receipt:
+=== PARKING RECEIPT ===
+Receipt ID: 504cd39b-f1f8-4ad4-9e37-23c635ad9085
+Ticket ID: 1194e3ef-6eaf-4be1-805a-756f7e92883d
+Vehicle: DUMMY-1194e3ef-6eaf-4be1-805a-756f7e92883d (CAR)
+Entry Time: 2026-07-30T15:39:30.622412900
+Exit Time: 2026-07-30T15:39:30.703834900
+Total Fee: $20.00
+Payment Status: PENDING
+=====================
+
+
+=== ADMIN OPERATIONS SIMULATION ===
+
+--- Admin Operations Simulation ---
+[CONTROLLER] Admin request to add floor: 3
+[SERVICE] Adding floor with number: 3
+[SERVICE] Floor added successfully: 31ec9692-9c48-4f07-8e09-b3a1c3d35e79
+[CONTROLLER] Floor added successfully by admin
+[CONTROLLER] Admin request to add 10 CAR slots to floor 3
+[SERVICE] Adding 10 slots of type CAR to floor 3
+[SERVICE] Added 10 slots to floor 3
+[CONTROLLER] Slots added successfully by admin
+[CONTROLLER] Admin request to add 5 EV slots to floor 3
+[SERVICE] Adding 5 slots of type EV to floor 3
+[SERVICE] Added 5 slots to floor 3
+[CONTROLLER] Slots added successfully by admin
+[CONTROLLER] Admin request to update pricing for CAR
+[SERVICE] Updating pricing rule for CAR
+[SERVICE] Pricing rule updated successfully
+[CONTROLLER] Pricing rule updated successfully by admin
+[CONTROLLER] Admin request to update flat pricing for BIKE to 35.0
+[SERVICE] Updating flat pricing for BIKE to 35.0
+[SERVICE] Flat pricing updated successfully
+[CONTROLLER] Flat pricing updated successfully by admin
+[CONTROLLER] Admin request to update hourly pricing for TRUCK to 40.0
+[SERVICE] Updating hourly pricing for TRUCK to 40.0
+[SERVICE] Hourly pricing updated successfully
+[CONTROLLER] Hourly pricing updated successfully by admin
+[CONTROLLER] Admin request to add new pricing rule for EV
+[SERVICE] Adding new pricing rule for EV
+[SERVICE] Pricing rule added successfully
+[CONTROLLER] Pricing rule added successfully by admin
+? Admin operations completed successfully
+
+=== FINAL STATUS ===
+[CONTROLLER] Admin request to get parking status
+[SERVICE] Getting parking lot status
+[SERVICE] Total floors: 4
+[SERVICE] Floor 3 has 15 slots
+[SERVICE] Floor 1 has 50 slots
+[SERVICE] Floor 2 has 50 slots
+[SERVICE] Floor 0 has 55 slots
+[SERVICE] Slot statistics: {CAR=115, TRUCK=5, EV=30, BIKE=20}
+[CONTROLLER] Parking status retrieved successfully by admin
+
+=== SIMULATION COMPLETED ===
