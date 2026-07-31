@@ -61,6 +61,21 @@ logger.error("Payment failed for user {}", userId);
 - Control timestamp format, level display, and message layout
 - Different formats for different destinations
 
+### NON-FUNCTIONAL REQUIREMENTS:
+
+- **Thread Safety:** Handle concurrent logging without data corruption
+- **Performance:** Minimal overhead for logging operations
+- **Extensibility:** Easy to add new log levels and destinations
+- **Configurability:** Runtime configuration changes
+- **Memory Efficiency:** Reasonable memory usage
+
+### EDGE CASES:
+
+- Multiple threads logging simultaneously (writing in same lines)
+- Invalid log levels or configurations
+- File system full during file logging
+- Database connection failure during database logging
+
 ---
 
 ## STEP-2: IDENTIFY CORE ENTITIES
@@ -84,27 +99,27 @@ logger.error("Payment failed for user {}", userId);
 
 ## STEP-3: VISUALIZE INTERACTION FLOWS
 
-1. **Basic Logging Flow:**
+1. **Basic Logging Flow:**  
    Application creates log message -> Logger processes message ->
    If message passes level check -> Logger sends to output destinations ->
    Each destination writes the message
 
-2. **Configuration Flow: (Real time)**
+2. **Configuration Flow: (Real time)**  
    Application sets LogConfiguration -> Logger updates its settings ->
    All future logs follow new configuration
 
-3. **Multi-threaded Flow:**
+3. **Multi-threaded Flow:**  
    Multiple threads create log messages simultaneously ->
    Thread-safe Logger processes each request ->
    Each destination handles concurrent writes safely
 
-4. **Formatting Flow:**
+4. **Formatting Flow:**  
    LogMessage reaches destination -> Destination formats message ->
    Formatted message is written to output
 
 ---
 
-## STEP-4: DISCUSS CLASS STRUCTURES AND RELATIONSHIPS
+## STEP-4: DEFINE CLASS STRUCTURES AND RELATIONSHIPS
 
 ### CORE INTERFACES: (fundamental classes and interfaces)
 
@@ -119,8 +134,8 @@ logger.error("Payment failed for user {}", userId);
    - void addAppender(LogAppender appender)
    - void addFilter(LogFilter filter)
    - void removeFilter(LogFilter filter)
-   - List<LogAppender> getAppenders()
-   - List<LogFilter> getFilters()
+   - List\<LogAppender\> getAppenders()
+   - List\<LogFilter\> getFilters()
 
 2. **LogAppender**
    - void append(LogMessage message)
