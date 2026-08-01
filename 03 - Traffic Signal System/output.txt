@@ -1,0 +1,274 @@
+=== Traffic Signal System Simulation ===
+IntersectionRepository initialized
+EmergencyRepository initialized
+Vehicle counter created for direction: NORTH
+Vehicle counter created for direction: SOUTH
+Vehicle counter created for direction: EAST
+Vehicle counter created for direction: WEST
+TrafficRepository initialized
+TimingRepository initialized
+IntersectionService initialized
+EmergencyService initialized
+TrafficService initialized
+TimingService initialized
+IntersectionController initialized
+EmergencyController initialized
+TrafficController initialized
+TimingController initialized
+
+--- Creating Intersection ---
+Creating intersection: Main Street & Oak Avenue (ID: 1)
+Traffic light created for direction: NORTH in RED state
+Traffic light created for direction: SOUTH in RED state
+Traffic light created for direction: EAST in RED state
+Traffic light created for direction: WEST in RED state
+Intersection created: Main Street & Oak Avenue (ID: 1)
+Intersection saved: 1
+Signal timing created for intersection 1, direction NORTH
+Signal timing saved for intersection 1, direction NORTH
+Signal timing created for intersection 1, direction SOUTH
+Signal timing saved for intersection 1, direction SOUTH
+Signal timing created for intersection 1, direction EAST
+Signal timing saved for intersection 1, direction EAST
+Signal timing created for intersection 1, direction WEST
+Signal timing saved for intersection 1, direction WEST
+Default timings initialized for intersection: 1
+Intersection cycle created for intersection: 1
+Cycle updated for intersection: 1
+Intersection found: 1
+Cycle found for intersection: 1
+Cycle resumed from phase: 0 (remaining: 1785570959s) for intersection 1
+Cycle resumed for intersection 1
+Automatic cycle started for intersection: 1
+TODO: Implement timer-based automatic cycling
+Intersection created successfully: Main Street & Oak Avenue (ID: 1)
+
+--- Setting Signal Timings ---
+Setting signal timing for intersection 1, direction NORTH: Y=3s, G=30s
+Timing updated for NORTH: Y=3s, G=30s
+Signal timing updated for intersection 1, direction NORTH
+Signal timing set for intersection 1, direction NORTH: Y=3s, G=30s
+Setting signal timing for intersection 1, direction SOUTH: Y=3s, G=30s
+Timing updated for SOUTH: Y=3s, G=30s
+Signal timing updated for intersection 1, direction SOUTH
+Signal timing set for intersection 1, direction SOUTH: Y=3s, G=30s
+Setting signal timing for intersection 1, direction EAST: Y=3s, G=15s
+Timing updated for EAST: Y=3s, G=15s
+Signal timing updated for intersection 1, direction EAST
+Signal timing set for intersection 1, direction EAST: Y=3s, G=15s
+Setting signal timing for intersection 1, direction WEST: Y=3s, G=15s
+Timing updated for WEST: Y=3s, G=15s
+Signal timing updated for intersection 1, direction WEST
+Signal timing set for intersection 1, direction WEST: Y=3s, G=15s
+
+--- Enabling Dynamic Timing ---
+Enabling dynamic timing for intersection 1, direction NORTH: true
+Dynamic timing enabled for NORTH
+Dynamic timing enabled for intersection 1, direction NORTH
+Dynamic timing enabled for intersection 1, direction NORTH
+Enabling dynamic timing for intersection 1, direction SOUTH: true
+Dynamic timing enabled for SOUTH
+Dynamic timing enabled for intersection 1, direction SOUTH
+Dynamic timing enabled for intersection 1, direction SOUTH
+
+--- Starting Automatic Cycle ---
+Starting cycle for intersection: 1
+Intersection found: 1
+Cycle found for intersection: 1
+Cycle resumed from phase: 0 (remaining: 3571141889s) for intersection 1
+Cycle resumed for intersection 1
+Automatic cycle started for intersection: 1
+TODO: Implement timer-based automatic cycling
+
+--- Displaying Initial Status ---
+Displaying status for intersection: 1
+Intersection found: 1
+=== Intersection Status ===
+ID: 1
+Name: Main Street & Oak Avenue
+Emergency Mode: false
+Cycle Paused: false
+Cycle found for intersection: 1
+Paused Phase: 0
+Traffic Light States:
+  NORTH: RED
+  SOUTH: RED
+  EAST: RED
+  WEST: RED
+Cycle found for intersection: 1
+Current Phase: 0
+Phase Start Time: 1785570929847
+========================
+=== Timing Status for Intersection 1 ===
+Signal timing found for intersection 1, direction NORTH
+Signal timing retrieved for intersection 1, direction NORTH
+NORTH: Y=3s, G=30s, Dynamic=true
+Signal timing found for intersection 1, direction SOUTH
+Signal timing retrieved for intersection 1, direction SOUTH
+SOUTH: Y=3s, G=30s, Dynamic=true
+Signal timing found for intersection 1, direction EAST
+Signal timing retrieved for intersection 1, direction EAST
+EAST: Y=3s, G=15s, Dynamic=false
+Signal timing found for intersection 1, direction WEST
+Signal timing retrieved for intersection 1, direction WEST
+WEST: Y=3s, G=15s, Dynamic=false
+===============================================
+
+--- Updating Traffic Counts ---
+Updating vehicle count for NORTH: 15
+Vehicle count updated for NORTH: 15
+Vehicle count updated for NORTH: 15
+Vehicle count updated for NORTH: 15
+TODO: Trigger dynamic timing adjustment if enabled
+Updating vehicle count for SOUTH: 8
+Vehicle count updated for SOUTH: 8
+Vehicle count updated for SOUTH: 8
+Vehicle count updated for SOUTH: 8
+TODO: Trigger dynamic timing adjustment if enabled
+Updating vehicle count for EAST: 3
+Vehicle count updated for EAST: 3
+Vehicle count updated for EAST: 3
+Vehicle count updated for EAST: 3
+TODO: Trigger dynamic timing adjustment if enabled
+Updating vehicle count for WEST: 12
+Vehicle count updated for WEST: 12
+Vehicle count updated for WEST: 12
+Vehicle count updated for WEST: 12
+TODO: Trigger dynamic timing adjustment if enabled
+
+--- Displaying Traffic Status ---
+=== Traffic Status ===
+Vehicle count retrieved for NORTH: 15
+Vehicle count retrieved for NORTH: 15
+NORTH: 15 vehicles
+Vehicle count retrieved for SOUTH: 8
+Vehicle count retrieved for SOUTH: 8
+SOUTH: 8 vehicles
+Vehicle count retrieved for EAST: 3
+Vehicle count retrieved for EAST: 3
+EAST: 3 vehicles
+Vehicle count retrieved for WEST: 12
+Vehicle count retrieved for WEST: 12
+WEST: 12 vehicles
+=====================
+
+--- Adjusting Timing Based on Traffic ---
+Adjusting timing based on traffic for intersection 1, direction NORTH
+TODO: Dynamic timing adjustment not yet implemented for intersection 1, direction NORTH
+Adjusting timing based on traffic for intersection 1, direction SOUTH
+TODO: Dynamic timing adjustment not yet implemented for intersection 1, direction SOUTH
+
+--- Requesting Emergency ---
+Emergency request received for intersection: 1, direction: EAST, duration: 30s
+Intersection found: 1
+Emergency request created: ID=1, Intersection=1, Direction=EAST, Duration=30s
+Emergency request saved: 1
+Intersection found: 1
+Cycle found for intersection: 1
+Cycle paused at phase: 0 (elapsed: 0s) for intersection 1
+Cycle paused for intersection 1
+Cycle paused for intersection: 1
+Intersection found: 1
+Emergency transition: NORTH already RED
+Emergency transition: SOUTH already RED
+Emergency transition: EAST already RED
+Emergency transition: WEST already RED
+Emergency: All signals transitioned to RED for intersection 1
+Intersection found: 1
+Traffic light EAST changed from RED to GREEN
+Signal EAST set to GREEN for intersection 1
+Intersection found: 1
+Emergency mode enabled for intersection 1
+Intersection found: 1
+Emergency direction set to: EAST for intersection 1
+Emergency request processed: 1 for intersection 1, direction EAST, duration 30s
+TODO: Schedule emergency end after 30 seconds
+
+--- Displaying Status During Emergency ---
+Displaying status for intersection: 1
+Intersection found: 1
+=== Intersection Status ===
+ID: 1
+Name: Main Street & Oak Avenue
+Emergency Mode: true
+Cycle Paused: true
+Cycle found for intersection: 1
+Paused Phase: 0
+Traffic Light States:
+  NORTH: RED
+  SOUTH: RED
+  EAST: GREEN
+  WEST: RED
+Cycle found for intersection: 1
+Current Phase: 0
+Phase Start Time: 1785570929847
+========================
+Getting emergency status for intersection: 1
+Active emergency found for intersection: 1
+=== Emergency Status ===
+Emergency ID: 1
+Direction: EAST
+Duration: 30s
+Active: true
+Request Time: 1785570929876
+Expired: false
+=======================
+
+--- Ending Emergency ---
+Ending emergency for intersection: 1
+Active emergency found for intersection: 1
+Intersection found: 1
+Emergency transition: NORTH already RED
+Emergency transition: SOUTH already RED
+Emergency transition: EAST GREEN ? YELLOW ? RED
+Traffic light EAST changed from GREEN to YELLOW
+Traffic light EAST changed from YELLOW to RED
+Emergency transition: WEST already RED
+Emergency: All signals transitioned to RED for intersection 1
+Emergency request 1 deactivated
+Emergency request status updated: 1 -> false
+Intersection found: 1
+Emergency mode disabled for intersection 1
+Emergency direction set to: null for intersection 1
+Intersection found: 1
+Cycle found for intersection: 1
+Cycle resumed from phase: 0 (remaining: 3571141889s) for intersection 1
+Cycle resumed for intersection 1
+Cycle resumed for intersection: 1
+Emergency ended for intersection: 1
+
+--- Displaying Final Status ---
+Displaying status for intersection: 1
+Intersection found: 1
+=== Intersection Status ===
+ID: 1
+Name: Main Street & Oak Avenue
+Emergency Mode: false
+Cycle Paused: false
+Cycle found for intersection: 1
+Paused Phase: 0
+Traffic Light States:
+  NORTH: RED
+  SOUTH: RED
+  EAST: RED
+  WEST: RED
+Cycle found for intersection: 1
+Current Phase: 0
+Phase Start Time: 1785570929847
+========================
+=== Timing Status for Intersection 1 ===
+Signal timing found for intersection 1, direction NORTH
+Signal timing retrieved for intersection 1, direction NORTH
+NORTH: Y=3s, G=30s, Dynamic=true
+Signal timing found for intersection 1, direction SOUTH
+Signal timing retrieved for intersection 1, direction SOUTH
+SOUTH: Y=3s, G=30s, Dynamic=true
+Signal timing found for intersection 1, direction EAST
+Signal timing retrieved for intersection 1, direction EAST
+EAST: Y=3s, G=15s, Dynamic=false
+Signal timing found for intersection 1, direction WEST
+Signal timing retrieved for intersection 1, direction WEST
+WEST: Y=3s, G=15s, Dynamic=false
+===============================================
+
+=== Simulation Complete ===
