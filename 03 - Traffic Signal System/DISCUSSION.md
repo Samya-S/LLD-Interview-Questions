@@ -82,53 +82,53 @@
 
 ## STEP-3: VISUALIZE INTERACTION FLOWS
 
-1. **Intersection Management Flows:**
-   a) **Intersection Creation Flow:**
+1. **Intersection Management Flows:**  
+   a) **Intersection Creation Flow:**  
       Create intersection -> Initialize 4 traffic lights -> Set default signal timings -> Start automatic cycle
    
-   b) **Intersection Status Flow:**
+   b) **Intersection Status Flow:**  
       Request status -> Return all signal states, cycle info, and current timings
 
-2. **Automatic Cycle Management Flows:**
-   a) **Normal Cycle Flow:**
+2. **Automatic Cycle Management Flows:**  
+   a) **Normal Cycle Flow:**  
       Cycle through phases: NORTH -> EAST -> SOUTH -> WEST
       Each phase: GREEN (configurable duration) -> YELLOW (configurable duration) -> RED -> Next phase
       State Pattern ensures valid transitions: RED -> GREEN -> YELLOW -> RED
    
-   b) **Cycle Pause/Resume Flow:**
+   b) **Cycle Pause/Resume Flow:**  
       Pause cycle -> Remember current phase -> Resume from same phase
 
-3. **Signal Timing Management Flows:**
-   a) **Timing Configuration Flow:**
+3. **Signal Timing Management Flows:**  
+   a) **Timing Configuration Flow:**  
       Set signal timing -> Update SignalTiming for direction -> Apply to next cycle
    
-   b) **Dynamic Timing Adjustment Flow:**
+   b) **Dynamic Timing Adjustment Flow:**  
       Traffic condition detected -> Calculate optimal timing -> Update SignalTiming -> Apply immediately or next cycle
 
-4. **Emergency Management Flows:**
-   a) **Emergency Request Flow:**
+4. **Emergency Management Flows:**  
+   a) **Emergency Request Flow:**  
       Emergency request -> PAUSE cycle -> ALL signals transition to RED (following proper state sequence) ->
       Emergency direction GREEN -> Wait duration -> Resume cycle from pause
    
-   b) **Emergency End Flow:**
+   b) **Emergency End Flow:**  
       End emergency -> All signals transition to RED (following proper state sequence) -> Resume cycle from paused phase
 
-5. **Vehicle Counting Flows:**
-   a) **Count Update Flow:**
+5. **Vehicle Counting Flows:**  
+   a) **Count Update Flow:**  
       Vehicle detected -> Update count for direction ->
       Trigger dynamic timing adjustment if enabled (in future)
    
-   b) **Count Query Flow:**
+   b) **Count Query Flow:**  
       Request count -> Return vehicle count for direction
 
-6. **State Transition Flows:**
-   a) **Valid State Transition Flow:**
+6. **State Transition Flows:**  
+   a) **Valid State Transition Flow:**  
       TrafficLight.turnGreen() -> currentState.turnGreen(this) -> setState(new GreenState())
    
-   b) **Invalid State Transition Flow:**
+   b) **Invalid State Transition Flow:**  
       TrafficLight.turnYellow() -> currentState.turnYellow(this) -> throws InvalidStateTransitionException
    
-   c) **Emergency State Transition Flow:**
+   c) **Emergency State Transition Flow:**  
       Emergency transition -> Check current state -> Follow proper sequence (GREEN -> YELLOW -> RED) ->
       Handle each state appropriately -> Log transition sequence
 
@@ -278,7 +278,7 @@
 
 ## STEP-5: CORE USE CASES & METHODS
 
-1. **IntersectionController Use Cases:**
+1. **IntersectionController Use Cases:**  
    a) **Intersection Creation Use Case:**
       createIntersection() -> IntersectionService.createIntersection() ->
       IntersectionRepository.save() -> Intersection created with 4 traffic lights and default timings
@@ -301,7 +301,7 @@
       IntersectionService.pauseCycle() -> IntersectionService.emergencySetAllSignalsToRed() ->
       Emergency direction GREEN -> Timer for resume
 
-2. **EmergencyController Use Cases:**
+2. **EmergencyController Use Cases:**  
    a) **Emergency Request Use Case:**
       requestEmergency() -> EmergencyService.requestEmergency() ->
       IntersectionService.pauseCycle() -> IntersectionService.emergencySetAllSignalsToRed() ->
@@ -312,7 +312,7 @@
       IntersectionService.emergencySetAllSignalsToRed() -> IntersectionService.resumeCycle() ->
       Cycle resumes from paused state
 
-3. **TrafficController Use Cases:**
+3. **TrafficController Use Cases:**  
    a) **Vehicle Count Update Use Case:**
       updateVehicleCount() -> TrafficService.updateVehicleCount() ->
       TrafficRepository.updateCount() -> Count updated -> Trigger dynamic timing adjustment if enabled
@@ -326,7 +326,7 @@
       TrafficRepository.updateCount() -> TimingService.adjustTimingBasedOnTraffic() ->
       TimingRepository.updateSignalTiming() -> Dynamic timing applied
 
-4. **TimingController Use Cases:**
+4. **TimingController Use Cases:**  
    a) **Signal Timing Configuration Use Case:**
       setSignalTiming() -> TimingService.setSignalTiming() ->
       TimingRepository.updateSignalTiming() -> Signal timing updated for direction
@@ -339,7 +339,7 @@
       enableDynamicTiming() -> TimingService.enableDynamicTiming() ->
       TimingRepository.updateSignalTiming() -> Dynamic timing enabled/disabled for direction
 
-5. **State Pattern Use Cases:**
+5. **State Pattern Use Cases:**  
    a) **Valid State Transition Use Case:**
       TrafficLight.turnGreen() -> currentState.turnGreen(this) -> setState(new GreenState()) -> State changed successfully
 
