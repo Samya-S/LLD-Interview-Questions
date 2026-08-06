@@ -133,7 +133,7 @@ Denominations Collected:
 ===============================
 
 --- Generating Sales Report ---
-Admin: Generating sales report for machine 1 from Wed Aug 05 14:29:04 IST 2026 to Thu Aug 06 14:29:04 IST 2026
+Admin: Generating sales report for machine 1 from Wed Aug 05 16:20:19 IST 2026 to Thu Aug 06 16:20:19 IST 2026
 AdminService: Generating sales report for machine 1
 Repository: Found 1 transactions for machine 1
 AdminService: Sales report generated successfully
@@ -153,39 +153,65 @@ Controller: Getting recovery status for machine 1
 RecoveryService: Getting recovery status for machine 1
 Repository: Found 0 pending recoveries for machine 1
 Recovery Status: COMPLETED
-RecoveryService: Getting recovery status for machine 1
-Repository: Found 0 pending recoveries for machine 1
-Recovery Status: COMPLETED
-Repository: Found 0 pending recoveries for machine 1
-Recovery Status: COMPLETED
-
-Recovery Status: COMPLETED
-
---- Simulating Power Failure Recovery ---
 
 --- Simulating Power Failure Recovery ---
 Controller: Creating recovery entry for machine 1, transaction 1, state PROCESSING_PAYMENT
 RecoveryService: Creating recovery entry for machine 1, transaction 1, state PROCESSING_PAYMENT
---- Simulating Power Failure Recovery ---
-Controller: Creating recovery entry for machine 1, transaction 1, state PROCESSING_PAYMENT
-RecoveryService: Creating recovery entry for machine 1, transaction 1, state PROCESSING_PAYMENT
 Repository: Saved recovery with ID: 1
-Controller: Creating recovery entry for machine 1, transaction 1, state PROCESSING_PAYMENT
-RecoveryService: Creating recovery entry for machine 1, transaction 1, state PROCESSING_PAYMENT
-Repository: Saved recovery with ID: 1
-RecoveryService: Creating recovery entry for machine 1, transaction 1, state PROCESSING_PAYMENT
-Repository: Saved recovery with ID: 1
-Repository: Saved recovery with ID: 1
-RecoveryService: Recovery entry created with ID 1
 RecoveryService: Recovery entry created with ID 1
 Controller: Checking and performing recovery for machine 1
-Exception in thread "main" java.lang.Error: Unresolved compilation problem:
-        Duplicate local variable machine
-Exception in thread "main" java.lang.Error: Unresolved compilation problem:
-        Duplicate local variable machine
-        Duplicate local variable machine
+Repository: Found machine with ID: 1
+RecoveryService: Performing recovery for machine 1
+Repository: Found 1 pending recoveries for machine 1
+RecoveryService: Found 1 pending recoveries
+RecoveryService: Processing recovery 1
+Repository: Found transaction with ID: 1
+RecoveryService: Handling PROCESSING_PAYMENT recovery for transaction 1
+Repository: Saved transaction with ID: 1
+RecoveryService: Refunded payment for transaction 1
+Repository: Saved recovery with ID: 1
+RecoveryService: Recovery 1 processed successfully
+Machine 1 state changed to: IDLE
+RecoveryService: Machine 1 reset to IDLE state
 
+--- Final Inventory Status ---
+=== INVENTORY STATUS FOR MACHINE 1 ===
+VendingMachineService: Getting available products for machine 1
+VendingMachineService: Found 5 available products
+Product: Cola | Price: $2.5 | Category: BEVERAGE
+Product: Chips | Price: $1.5 | Category: CHIPS
+Product: Chocolate | Price: $1.0 | Category: CANDY
+Product: Water | Price: $1.0 | Category: BEVERAGE
+Product: Cookies | Price: $2.0 | Category: COOKIES
+===============================================
 
-        at service.RecoveryService.performRecovery(RecoveryService.java:53)
-        at controller.RecoveryController.checkAndRecover(RecoveryController.java:18)
-        at main.VendingMachineSimulation.main(VendingMachineSimulation.java:147)
+--- Final Cash Box Status ---
+Controller: Getting total cash in machine 1
+PaymentService: Getting total cash in machine 1
+PaymentService: Total cash in machine: $0.0
+Total Cash in Machine: $0.0
+
+--- Admin Help ---
+=== ADMIN OPERATIONS HELP ===
+Available Operations:
+1. restockProduct(machineId, productId, quantity) - Restock a product
+2. collectCash(machineId) - Collect cash from machine
+3. getSalesReport(machineId, startDate, endDate) - Generate sales report
+4. displayInventoryStatus(machineId) - Show current inventory
+5. displaySystemStatus(machineId) - Show system health
+6. resetMachine(machineId) - Reset machine to operational state
+7. displayAdminHelp() - Show this help message
+=============================
+
+=== Simulation Complete ===
+
+? Vending Machine System - Complete Implementation
+  ? Domain Layer - All entities and state pattern
+  ? Repository Layer - Data access abstraction
+  ? Service Layer - Business logic implementation
+  ? Controller Layer - API endpoints and user interface
+  ? State Pattern - Machine state management
+  ? Payment Processing - Cash handling and change calculation
+  ? Inventory Management - Product tracking and restocking
+  ? Recovery System - Power failure handling
+  ? Admin Operations - Restocking, cash collection, reporting

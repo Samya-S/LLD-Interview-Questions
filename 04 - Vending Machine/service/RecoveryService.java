@@ -50,7 +50,6 @@ public class RecoveryService {
         }
         
         // Step 2: Check machine state and create recoveries if needed
-        VendingMachine machine = vendingMachineRepository.findById(machineId);
         if (machine != null) {
             String currentState = machine.getCurrentStateName();
             if (!"IDLE".equals(currentState)) {
