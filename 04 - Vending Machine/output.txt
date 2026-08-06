@@ -1,0 +1,191 @@
+=== Vending Machine System Simulation ===
+VendingMachineRepository initialized
+ProductRepository initialized
+PaymentRepository initialized
+RecoveryRepository initialized
+VendingMachineService initialized
+PaymentService initialized
+RecoveryService initialized
+AdminService initialized
+VendingMachineController initialized
+PaymentController initialized
+RecoveryController initialized
+AdminController initialized
+
+--- Creating Vending Machine ---
+VendingMachine created: Main Lobby (ID: 1)
+Repository: Saved machine with ID: 1
+
+--- System Startup Recovery Check ---
+Controller: Checking and recovering during system startup
+RecoveryService: Checking and recovering during system startup
+RecoveryService: System startup recovery completed
+
+--- Adding Products to Inventory ---
+Repository: Updated product with ID: 1
+Repository: Updated product with ID: 2
+Repository: Updated product with ID: 3
+Repository: Updated product with ID: 4
+Repository: Updated product with ID: 5
+Added 10 units of Cola to machine 1
+Added 15 units of Chips to machine 1
+Added 20 units of Chocolate to machine 1
+Added 25 units of Water to machine 1
+Added 12 units of Cookies to machine 1
+? Added products to inventory
+
+--- Available Products ---
+Controller: Getting available products for machine 1
+VendingMachineService: Getting available products for machine 1
+VendingMachineService: Found 5 available products
+  ? Cola - $2.5
+  ? Chips - $1.5
+  ? Chocolate - $1.0
+  ? Water - $1.0
+  ? Cookies - $2.0
+
+--- Processing Payment ---
+Controller: Processing payment for machine 1, product 1
+PaymentService: Processing payment for machine 1, product 1
+Repository: Found machine with ID: 1
+IdleState: Processing payment request for product 1
+Added 1 FIVE_DOLLAR notes to machine 1
+Machine 1 state changed to: PROCESSING_PAYMENT
+Machine 1 state changed to: DISPENSING
+Dispensed Cola from machine 1
+Machine 1 state changed to: IDLE
+IdleState: Payment processed, transaction created: 0
+Repository: Saved transaction with ID: 1
+PaymentService: Payment processed successfully, transaction ID: 1
+? Payment processed successfully
+  Transaction ID: 1
+  Amount Required: $5.0
+  Amount Inserted: $5.0
+  Status: COMPLETED
+
+--- Machine State ---
+  Current State: IDLE
+  Operational: true
+
+--- State Transition Demonstration ---
+  Final State after payment processing: IDLE
+
+--- Inventory Status ---
+=== INVENTORY STATUS FOR MACHINE 1 ===
+VendingMachineService: Getting available products for machine 1
+VendingMachineService: Found 5 available products
+Product: Cola | Price: $2.5 | Category: BEVERAGE
+Product: Chips | Price: $1.5 | Category: CHIPS
+Product: Chocolate | Price: $1.0 | Category: CANDY
+Product: Water | Price: $1.0 | Category: BEVERAGE
+Product: Cookies | Price: $2.0 | Category: COOKIES
+===============================================
+
+--- Cash Box Status ---
+Controller: Getting total cash in machine 1
+PaymentService: Getting total cash in machine 1
+PaymentService: Total cash in machine: $0.0
+Total Cash in Machine: $0.0
+Controller: Getting cash box status for machine 1
+PaymentService: Getting cash box status for machine 1
+PaymentService: Cash box status retrieved
+Denominations Available:
+
+--- Admin Operations ---
+=== SYSTEM STATUS FOR MACHINE 1 ===
+Repository: Found machine with ID: 1
+Machine Operational: true
+VendingMachineService: Getting available products for machine 1
+VendingMachineService: Found 5 available products
+Total Products: 5
+Recent Transactions: Information not available
+===============================================
+
+--- Restocking Product ---
+Admin: Restocking product 1 with quantity 5
+AdminService: Restocking product 1 with quantity 5
+Repository: Found product with ID: 1
+Repository: Found machine with ID: 1
+AdminService: Current machine state: IDLE
+Repository: Found machine with ID: 1
+Repository: Updated inventory for machine 1, product 1, quantity 5
+AdminService: Product restocked successfully
+Admin: Product restocked successfully
+=== INVENTORY STATUS FOR MACHINE 1 ===
+VendingMachineService: Getting available products for machine 1
+VendingMachineService: Found 5 available products
+Product: Cola | Price: $2.5 | Category: BEVERAGE
+Product: Chips | Price: $1.5 | Category: CHIPS
+Product: Chocolate | Price: $1.0 | Category: CANDY
+Product: Water | Price: $1.0 | Category: BEVERAGE
+Product: Cookies | Price: $2.0 | Category: COOKIES
+===============================================
+
+--- Collecting Cash ---
+Admin: Collecting cash from machine 1
+AdminService: Collecting cash from machine 1
+Repository: Updated cash box for machine 1
+AdminService: Cash collected successfully - Total: $0.0
+Admin: Cash collected successfully
+=== CASH COLLECTION DETAILS ===
+Total Amount Collected: $0.0
+Denominations Collected:
+===============================
+
+--- Generating Sales Report ---
+Admin: Generating sales report for machine 1 from Wed Aug 05 14:29:04 IST 2026 to Thu Aug 06 14:29:04 IST 2026
+AdminService: Generating sales report for machine 1
+Repository: Found 1 transactions for machine 1
+AdminService: Sales report generated successfully
+Admin: Sales report generated successfully
+=== SALES REPORT ===
+Total Sales: $5.0
+Total Transactions: 1
+Top Selling Products:
+  1. Coca Cola
+  2. Snickers
+  3. Chips
+  4. Water
+===================
+
+--- Recovery Operations ---
+Controller: Getting recovery status for machine 1
+RecoveryService: Getting recovery status for machine 1
+Repository: Found 0 pending recoveries for machine 1
+Recovery Status: COMPLETED
+RecoveryService: Getting recovery status for machine 1
+Repository: Found 0 pending recoveries for machine 1
+Recovery Status: COMPLETED
+Repository: Found 0 pending recoveries for machine 1
+Recovery Status: COMPLETED
+
+Recovery Status: COMPLETED
+
+--- Simulating Power Failure Recovery ---
+
+--- Simulating Power Failure Recovery ---
+Controller: Creating recovery entry for machine 1, transaction 1, state PROCESSING_PAYMENT
+RecoveryService: Creating recovery entry for machine 1, transaction 1, state PROCESSING_PAYMENT
+--- Simulating Power Failure Recovery ---
+Controller: Creating recovery entry for machine 1, transaction 1, state PROCESSING_PAYMENT
+RecoveryService: Creating recovery entry for machine 1, transaction 1, state PROCESSING_PAYMENT
+Repository: Saved recovery with ID: 1
+Controller: Creating recovery entry for machine 1, transaction 1, state PROCESSING_PAYMENT
+RecoveryService: Creating recovery entry for machine 1, transaction 1, state PROCESSING_PAYMENT
+Repository: Saved recovery with ID: 1
+RecoveryService: Creating recovery entry for machine 1, transaction 1, state PROCESSING_PAYMENT
+Repository: Saved recovery with ID: 1
+Repository: Saved recovery with ID: 1
+RecoveryService: Recovery entry created with ID 1
+RecoveryService: Recovery entry created with ID 1
+Controller: Checking and performing recovery for machine 1
+Exception in thread "main" java.lang.Error: Unresolved compilation problem:
+        Duplicate local variable machine
+Exception in thread "main" java.lang.Error: Unresolved compilation problem:
+        Duplicate local variable machine
+        Duplicate local variable machine
+
+
+        at service.RecoveryService.performRecovery(RecoveryService.java:53)
+        at controller.RecoveryController.checkAndRecover(RecoveryController.java:18)
+        at main.VendingMachineSimulation.main(VendingMachineSimulation.java:147)
