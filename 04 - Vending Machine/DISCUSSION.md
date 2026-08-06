@@ -297,8 +297,6 @@
 2. **Aggregation** - I have you, but you are not mine
 3. **Composition** - You are mine and only mine
 
-![Class Diagram](./Vending_Machine___Class_Diagram.png)
-
 ---
 
 ## STEP-9: FUTURE ENHANCEMENTS
