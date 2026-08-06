@@ -1,0 +1,75 @@
+? Starting Task Management System Simulation...
+
+=== ? FRONTEND: User Dashboard ===
+User opens dashboard...
+? User has 0 TODO tasks
+
+=== ? FRONTEND: Task Creation ===
+User clicks 'Create New Task' button...
+Email notification sent for task 1: CREATED -  -> Implement User Authentication
+? Task created: Implement User Authentication (ID: 1)
+User assigns task to team member...
+Email notification sent for task 1: ASSIGNED - 0 -> 2
+? Task assigned to user ID: 2
+User adds subtask...
+Email notification sent for task 2: CREATED -  -> Design Database Schema
+? Subtask added: Design Database Schema
+
+=== ? FRONTEND: Task Management ===
+User opens task management panel...
+? Managing task: Implement User Authentication
+User edits task details...
+Email notification sent for task 1: UPDATED - Implement User Authentication -> Implement User Authentication (Updated)
+?? Task updated: Implement User Authentication (Updated)
+User changes task status to In Progress...
+Email notification sent for task 1: STATUS_CHANGED - TODO -> IN_PROGRESS
+? Task status changed to IN_PROGRESS
+User reassigns task...
+Email notification sent for task 1: ASSIGNED - 0 -> 2
+? Task reassigned to user ID: 2
+
+=== ? FRONTEND: Task Collaboration ===
+User opens task collaboration panel...
+User subscribes to task notifications...
+Saving subscription: User 2 -> Task 1
+? User 2 subscribed to task 1
+Finding change logs for task: 1
+? Task history retrieved: 0 changes
+User adds comment to task...
+? Comment added: Great progress! Let's review the implementation.
+
+=== ? FRONTEND: Task Search ===
+User searches for tasks...
+? High priority tasks found: 2
+? In-progress tasks found: 2
+? Complex search results: 2 tasks
+
+=== ? STRATEGY PATTERN: Sorting Demonstrations ===
+? Sorting by Priority (HIGH ? MEDIUM ? LOW):
+  - Implement User Authentication (Updated) (Priority: MEDIUM)
+  - Design Database Schema (Priority: MEDIUM)
+
+? Sorting by Due Date (earliest first):
+  - Implement User Authentication (Updated) (Due: 2026-08-15T00:00:56.172207700)
+  - Design Database Schema (Due: 2026-08-12T00:00:56.172207700)
+
+? Sorting by Created Date (newest first):
+  - Implement User Authentication (Updated) (Created: 2026-08-07T00:00:56.182207600)
+  - Design Database Schema (Created: 2026-08-07T00:00:56.180207600)
+
+? Strategy Pattern allows easy swapping of sorting algorithms at runtime!
+
+=== ? FRONTEND: Notifications ===
+User manages notification preferences...
+User subscribes to multiple tasks...
+Saving subscription: User 1 -> Task 1
+? Subscribed to task 1
+Saving subscription: User 1 -> Task 2
+? Subscribed to task 2
+User unsubscribes from a task...
+? Unsubscribed from task 2
+Finding change logs for task: 1
+? Notifications for task 1: 0 updates
+? Real-time notification received: Task status changed!
+
+? Simulation completed successfully!
