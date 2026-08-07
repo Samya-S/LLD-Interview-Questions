@@ -1,0 +1,40 @@
+=== PUB/SUB SYSTEM SIMULATION ===
+
+1. Creating topics...
+Created topics: [Topic{id='654cc8cb-d969-4701-b5e0-dc72d30ca5d7', name='News', isActive=true, emailSubscribers=0, realtimeSubscribers=0}, Topic{id='33e6fcd0-9d3e-4441-a380-b5596a7a27ab', name='Technology', isActive=true, emailSubscribers=0, realtimeSubscribers=0}]
+
+2. Registering subscribers...
+Registered subscribers: Subscriber{id='ad5a4af8-9824-4f8f-ae41-7a7c22f5350f', email='alice@example.com', isOnline=true}, Subscriber{id='ca141452-435b-4d77-9d0a-eb7f2111acd0', email='bob@example.com', isOnline=true}
+
+3. Subscribing to topics...
+Subscriptions created
+
+4. Publishing messages...
+Sending EMAIL to alice@example.com: New message in topic -> New AI breakthrough announced!
+Sending EMAIL to bob@example.com: New message in topic -> New AI breakthrough announced!
+Sending EMAIL to alice@example.com: New message in topic -> Breaking: Major political update
+Messages published: Message{id='ef9a5b15-b09d-4984-b929-4727b0fe311b', topicId='33e6fcd0-9d3e-4441-a380-b5596a7a27ab', content='New AI breakthrough announced!', timestamp=1786114911397}, Message{id='aa7dddc9-f69a-465c-99a7-0a159e2938c8', topicId='654cc8cb-d969-4701-b5e0-dc72d30ca5d7', content='Breaking: Major political update', timestamp=1786114911401}
+
+5. Testing online/offline status...
+Sending REALTIME to ad5a4af8-9824-4f8f-ae41-7a7c22f5350f (connection: null): New message -> New AI breakthrough announced!
+Sending REALTIME to ad5a4af8-9824-4f8f-ae41-7a7c22f5350f (connection: null): New message -> Breaking: Major political update
+Sending REALTIME to ca141452-435b-4d77-9d0a-eb7f2111acd0 (connection: null): New message -> New AI breakthrough announced!
+Background processing completed for message: aa7dddc9-f69a-465c-99a7-0a159e2938c8
+Background processing completed for message: ef9a5b15-b09d-4984-b929-4727b0fe311b
+Pushing pending deliveries for subscriber: ad5a4af8-9824-4f8f-ae41-7a7c22f5350f
+Status changes applied
+
+6. Publishing another message...
+Sending EMAIL to alice@example.com: New message in topic -> Tech conference next week!
+Sending EMAIL to bob@example.com: New message in topic -> Tech conference next week!
+Sending REALTIME to ad5a4af8-9824-4f8f-ae41-7a7c22f5350f (connection: null): New message -> Tech conference next week!
+Sending REALTIME to ca141452-435b-4d77-9d0a-eb7f2111acd0 (connection: null): New message -> Tech conference next week!
+Message published: Message{id='3f9c6a4e-b3cb-479d-9455-debd65d4fb4d', topicId='33e6fcd0-9d3e-4441-a380-b5596a7a27ab', content='Tech conference next week!', timestamp=1786114911419}
+
+7. Acknowledging message...
+Sending REALTIME to ad5a4af8-9824-4f8f-ae41-7a7c22f5350f (connection: conn-123): New message -> Tech conference next week!
+Background processing completed for message: 3f9c6a4e-b3cb-479d-9455-debd65d4fb4d
+Acknowledged message ef9a5b15-b09d-4984-b929-4727b0fe311b by subscriber ad5a4af8-9824-4f8f-ae41-7a7c22f5350f 
+Message acknowledged
+
+=== SIMULATION COMPLETED ===
