@@ -1,0 +1,40 @@
+=== HOTEL MANAGEMENT SYSTEM SIMULATION ===
+
+1. Creating cancellation policy...
+Created policy: CancellationPolicy{id='a99db7a1-9cce-4b40-a41e-0ff0fc1764ba', name='FLEX', refundPercent=100, cutoffHoursBeforeCheckIn=24}
+
+2. Creating hotel...
+Created hotel: Hotel{id='17cfab9d-32fe-42ac-ade6-22ab5cb38341', name='Grand Hotel', city='New York', country='USA', rating=4.5, isActive=true}
+
+3. Creating room type...
+Created room type: RoomType{id='5d92c6b7-a57a-4aef-9563-8a0e21102a91', name='Deluxe King', capacity=2, bedType='KING', basePrice=10000, totalRooms=10}
+
+4. Creating user...
+Created user: User{id='f0385f9d-1ce6-48d7-8829-6ec8956f3137', name='John Doe', email='john@example.com', role=CUSTOMER}
+
+5. Setting seasonal price...
+Set seasonal price: SeasonalPrice{id='ce3e0329-3e80-42e6-bda0-03fcdf360489', hotelId='17cfab9d-32fe-42ac-ade6-22ab5cb38341', roomTypeId='5d92c6b7-a57a-4aef-9563-8a0e21102a91', dateUtc=1786360068359, priceMinor=15000}
+
+6. Checking availability...
+Found 1 available room type(s):
+  - Deluxe King (Capacity: 2, Bed: KING, Price: 25000)
+
+7. Creating booking...
+Created booking: Booking{id='a3f6592e-9050-4132-b921-f1aee7edacc8', userId='f0385f9d-1ce6-48d7-8829-6ec8956f3137', hotelId='17cfab9d-32fe-42ac-ade6-22ab5cb38341', roomTypeId='5d92c6b7-a57a-4aef-9563-8a0e21102a91', bookingStatus=CREATED, paymentStatus=PENDING, totalAmountMinor=25000}
+
+8. Initiating transaction...
+Transaction initiated: Transaction{id='c7ec305d-2a90-4c14-ac37-62cd55c9f580', bookingId='a3f6592e-9050-4132-b921-f1aee7edacc8', amountMinor=25000, status=PENDING}
+
+9. Simulating payment success callback...
+Payment completed, booking confirmed
+
+10. Admin checking in guest...
+Guest checked in: Booking{id='a3f6592e-9050-4132-b921-f1aee7edacc8', userId='f0385f9d-1ce6-48d7-8829-6ec8956f3137', hotelId='17cfab9d-32fe-42ac-ade6-22ab5cb38341', roomTypeId='5d92c6b7-a57a-4aef-9563-8a0e21102a91', bookingStatus=CHECKED_IN, paymentStatus=COMPLETED, totalAmountMinor=25000}
+
+11. Admin checking out guest (early check-out)...
+Guest checked out: Booking{id='a3f6592e-9050-4132-b921-f1aee7edacc8', userId='f0385f9d-1ce6-48d7-8829-6ec8956f3137', hotelId='17cfab9d-32fe-42ac-ade6-22ab5cb38341', roomTypeId='5d92c6b7-a57a-4aef-9563-8a0e21102a91', bookingStatus=CHECKED_OUT, paymentStatus=COMPLETED, totalAmountMinor=25000}
+
+12. Viewing user dashboard...
+User bookings: 1 booking(s)
+
+=== SIMULATION COMPLETED ===
