@@ -1,0 +1,49 @@
+=== ATM Machine Simulation ===
+
+1. Card Operations:
+[IdleState] insertCard: CARD_001
+[CardService] validate card and cache details
+[SessionService] start session
+[STATE] IdleState ? CardInsertedState
+Card inserted: true
+
+2. Session Management:
+[SessionController] startSession handled by state during insertCard
+Session started: SESSION_1786260477475
+
+3. Authentication:
+[CardInsertedState] enterPin
+[CardService] authenticate card
+[STATE] CardInsertedState ? AuthenticatedState
+Authentication: true
+
+4. Transaction Operations:
+[AuthenticatedState] selectTransaction: BALANCE
+[STATE] AuthenticatedState ? TransactionSelectedState
+[TransactionSelectedState] process: type=BALANCE, amount=0
+[BalanceInquiryStrategy] Processing balance inquiry for session: SESSION_1786260477475
+[BalanceInquiryStrategy] Balance inquiry completed
+[STATE] TransactionSelectedState ? TransactionCompletedState
+Balance inquiry: SUCCESS
+[TransactionCompletedState] selectTransaction: WITHDRAW
+[STATE] TransactionCompletedState ? TransactionSelectedState
+[TransactionSelectedState] process: type=WITHDRAW, amount=10000
+[WithdrawalStrategy] Processing withdrawal: 10000 for session: SESSION_1786260477475
+[WithdrawalStrategy] Withdrawal completed, dispensed: {ONE_HUNDRED=1}
+[STATE] TransactionSelectedState ? TransactionCompletedState
+Withdrawal: SUCCESS
+[TransactionCompletedState] selectTransaction: DEPOSIT
+[STATE] TransactionCompletedState ? TransactionSelectedState
+[TransactionSelectedState] process with notes: type=DEPOSIT, amount=20000
+[DepositStrategy] Processing deposit: 20000 for session: SESSION_1786260477475
+[DepositStrategy] Deposit completed, deposited: {ONE_HUNDRED=2}
+[STATE] TransactionSelectedState ? TransactionCompletedState
+Deposit: SUCCESS
+
+5. Admin Operations:
+Admin login: true
+Cash audit - Total: $15000
+[TransactionCompletedState] endSession
+[STATE] TransactionCompletedState ? IdleState
+[ERROR] Operation not allowed in IdleState
+Session ended and card ejected
