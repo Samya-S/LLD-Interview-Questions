@@ -129,48 +129,33 @@
 
 ## STEP-3: VISUALIZE INTERACTION FLOWS
 
-1. **Hotel Search & Browse:**
-   - User enters filters -\> System queries search index
-   - Returns hotels/room types with total price and average price per night
+1. **Hotel Search & Browse:**  
+   - User enters filters -> System queries search index -> Returns hotels/room types with total price and average price per night
 
-2. **Real-time Availability:**
-   - User selects hotel + date range -\> System queries all room types for hotel
-   - For each room type: checks availability (query CONFIRMED and HELD bookings, CREATED bookings don't count)
-   - Calculates pricing -\> Returns List\<RoomTypeAvailability\> with only available room types + their details and pricing
+2. **Real-time Availability:**  
+   - User selects hotel + date range -> System queries all room types for hotel -> For each room type: checks availability (query CONFIRMED and HELD bookings, CREATED bookings don't count) -> Calculates pricing -> Returns List\<RoomTypeAvailability\> with only available room types + their details and pricing
 
-3. **Booking (Two-Phase):**
-   **Phase 1 - Create Booking:**
-   - Validate request -\> Precheck availability (query CONFIRMED + HELD bookings)
-   - Fetch current prices from DB (SeasonalPrice table, fallback to basePrice)
-   - Validate prices match expected -\> Price the stay
-   - Create booking (CREATED, paymentStatus=PENDING) with locked prices
-   - NO inventory reduction (CREATED bookings don't count in availability)
+3. **Booking (Two-Phase):**  
+   **Phase 1 - Create Booking:**  
+   - Validate request -> Precheck availability (query CONFIRMED + HELD bookings) -> Fetch current prices from DB (SeasonalPrice table, fallback to basePrice) -> Validate prices match expected -> Price the stay -> Create booking (CREATED, paymentStatus=PENDING) with locked prices -> NO inventory reduction (CREATED bookings don't count in availability)
 
-   **Phase 2 - Initiate Payment:**
-   - User initiates payment -\> TransactionService.initiateTransaction(bookingId)
-   - Validate booking status is CREATED -\> Update booking (CREATED -\> HELD)
-   - Reduce inventory (booking now counts as HELD)
-   - On payment success callback: confirm booking (status=HELD -\> CONFIRMED);
+   **Phase 2 - Initiate Payment:**  
+   - User initiates payment -> TransactionService.initiateTransaction(bookingId) -> Validate booking status is CREATED -> Update booking (CREATED -> HELD) -> Reduce inventory (booking now counts as HELD) -> On payment success callback: confirm booking (status=HELD -> CONFIRMED);
    on payment failure/timeout callback: restore inventory (mark booking CANCELLED)
 
-4. **Cancellation:**
-   - User requests cancel -\> Validate booking can be cancelled (not CHECKED_IN/CHECKED_OUT)
-   - Apply policy by time window -\> Update booking status to CANCELLED
-   - Trigger refund if applicable
-   - Inventory automatically restored (CANCELLED bookings don't count in availability)
+4. **Cancellation:**  
+   - User requests cancel -> Validate booking can be cancelled (not CHECKED_IN/CHECKED_OUT) -> Apply policy by time window -> Update booking status to CANCELLED -> Trigger refund if applicable -> Inventory automatically restored (CANCELLED bookings don't count in availability)
 
-5. **Check-in:**
-   - Admin checks in guest -\> Assign room
-   - Update booking status to CHECKED_IN -\> Set checkInTimeUtc and allocatedRoomId
+5. **Check-in:**  
+   - Admin checks in guest -> Assign room -> Update booking status to CHECKED_IN -> Set checkInTimeUtc and allocatedRoomId
 
-6. **Check-out:**
-   - Admin checks out guest -\> Update booking status to CHECKED_OUT
-   - Set checkOutTimeUtc -\> If early check-out (before checkOutDateUtc), release inventory for remaining dates
+6. **Check-out:**  
+   - Admin checks out guest -> Update booking status to CHECKED_OUT -> Set checkOutTimeUtc -> If early check-out (before checkOutDateUtc), release inventory for remaining dates
 
-7. **Admin:**
-   - CRUD hotel/room/roomType -\> Adjust inventory/overbooking percent -\> Manage seasonal prices and policies
+7. **Admin:**  
+   - CRUD hotel/room/roomType -> Adjust inventory/overbooking percent -> Manage seasonal prices and policies
 
-8. **User Dashboard:**
+8. **User Dashboard:**  
    - Fetch bookings partitioned into past vs upcoming with statuses and receipts
 
 9. **Background Scheduler:**
