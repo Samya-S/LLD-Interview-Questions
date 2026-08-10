@@ -111,6 +111,26 @@ public class MovementService {
             // nextFloor = path.get(0)
             // Move the elevator to the next floor by changing the state to moving if not
             // move ahead and work for other elevators.. 
+
+            int nextFloor = path.get(0);
+    
+            // Update direction
+            Direction dir = nextFloor > elevator.getCurrentFloor() ? Direction.UP : Direction.DOWN;
+            elevator.setDirection(dir);
+            elevator.setState(ElevatorState.MOVING);
+            
+            // Move the elevator
+            elevator.setCurrentFloor(nextFloor);
+            elevatorService.updateElevatorState(elevatorId, ElevatorState.MOVING);
+            System.out.println("Elevator " + elevatorId + " moved to floor " + nextFloor);
+            
+            // Complete any requests whose destination matches this floor
+            for (InternalRequest req : pendingRequests) {
+                if (req.getDestinationFloor() == nextFloor) {
+                    requestService.completeInternalRequest(req.getId());
+                    System.out.println("Completed request for floor " + nextFloor);
+                }
+            }
         }
     }
 

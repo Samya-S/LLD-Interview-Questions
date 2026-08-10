@@ -1,0 +1,82 @@
+=== ELEVATOR SYSTEM SIMULATION ===
+Created building: Tech Tower (Floors: 1-10)
+Created 3 elevators with capacity 8 each
+Elevator IDs: abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1, 01917686-3a2a-4d0f-a6df-7322538045a1, 354fdf9e-656d-4e2f-b1d1-db49acf2f164
+Set elevator selection strategy to Load Balancing
+Elevator system started for building: b539f8e2-0bfd-4379-8c58-e17e19097143
+Elevator system started for building: b539f8e2-0bfd-4379-8c58-e17e19097143
+
+=== SIMULATING EXTERNAL REQUESTS ===
+Request queued: Floor 3 UP
+UP button pressed on floor 3
+Request queued: Floor 7 UP
+UP button pressed on floor 7
+Request queued: Floor 9 DOWN
+DOWN button pressed on floor 9
+Request queued: Floor 2 UP
+UP button pressed on floor 2
+Created internal request for elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1 to serve external request at floor 3
+Request assigned: Floor 3 -> Elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1
+Created internal request for elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1 to serve external request at floor 7
+Request assigned: Floor 7 -> Elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1
+Created internal request for elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1 to serve external request at floor 9
+Request assigned: Floor 9 -> Elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1
+Created internal request for elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1 to serve external request at floor 2
+Request assigned: Floor 2 -> Elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1
+Elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1 moved to floor 2
+Completed request for floor 2
+
+=== SIMULATING INTERNAL REQUESTS ===
+Floor 5 selected in elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1
+Floor 8 selected in elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1
+Floor 4 selected in elevator 01917686-3a2a-4d0f-a6df-7322538045a1
+Floor 6 selected in elevator 354fdf9e-656d-4e2f-b1d1-db49acf2f164
+Elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1 moved to floor 3
+Completed request for floor 3
+Elevator 01917686-3a2a-4d0f-a6df-7322538045a1 moved to floor 4
+Completed request for floor 4
+Elevator 354fdf9e-656d-4e2f-b1d1-db49acf2f164 moved to floor 6
+Completed request for floor 6
+Elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1 moved to floor 5
+Completed request for floor 5
+Floor 9 selected in elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1
+Request queued: Floor 4 UP
+UP button pressed on floor 4
+Floor 10 selected in elevator 01917686-3a2a-4d0f-a6df-7322538045a1
+Created internal request for elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1 to serve external request at floor 4
+Request assigned: Floor 4 -> Elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1
+Elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1 moved to floor 7
+Completed request for floor 7
+Elevator 01917686-3a2a-4d0f-a6df-7322538045a1 moved to floor 10
+Completed request for floor 10
+Elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1 moved to floor 8
+Completed request for floor 8
+
+=== TESTING FULL MAINTENANCE MODE ===
+Elevator 01917686-3a2a-4d0f-a6df-7322538045a1 entering maintenance mode
+Elevator 01917686-3a2a-4d0f-a6df-7322538045a1 entering maintenance mode directly (no pending requests)
+Elevator 01917686-3a2a-4d0f-a6df-7322538045a1 maintenance mode: true
+Elevator 01917686-3a2a-4d0f-a6df-7322538045a1 cannot accept new requests in current state: MAINTENANCE      
+Elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1 moved to floor 9
+Completed request for floor 9
+Completed request for floor 9
+Request queued: Floor 6 UP
+UP button pressed on floor 6
+Created internal request for elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1 to serve external request at floor 6
+Request assigned: Floor 6 -> Elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1
+Elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1 moved to floor 6
+Completed request for floor 6
+
+=== EXITING MAINTENANCE MODE ===
+Elevator 01917686-3a2a-4d0f-a6df-7322538045a1 exiting maintenance mode and returning to service
+Elevator 01917686-3a2a-4d0f-a6df-7322538045a1 maintenance mode: false
+Elevator abfd7283-1e3f-4e6c-bddd-60fc9d36e9d1 moved to floor 4
+Completed request for floor 4
+
+=== STOPPING SYSTEM GRACEFULLY ===
+Stopping elevator system gracefully...
+Elevator system stopped gracefully
+Elevator system stopped for building: b539f8e2-0bfd-4379-8c58-e17e19097143
+Elevator system is not running. Request rejected.
+
+=== SIMULATION COMPLETED ===
