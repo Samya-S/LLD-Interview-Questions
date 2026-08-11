@@ -1,0 +1,31 @@
+=== DIGITAL WALLET SYSTEM SIMULATION ===
+
+1. Creating users...
+Users created: User{id='91646b08-09b0-46b0-abb1-1b1392f13c02', username='alice', email='alice@example.com', name='Alice'} | User{id='c3728636-1e89-43fa-a60c-86bb00fb1bf9', username='bob', email='bob@example.com', name='Bob'}
+
+2. Creating wallets...
+Wallet A: Wallet{id='72bea654-0418-48f1-8561-f18681b52488', accountNumber='ACC_72bea654', balanceMinor=0, userId='91646b08-09b0-46b0-abb1-1b1392f13c02', status=ACTIVE}
+Wallet B: Wallet{id='2025f9a9-8e33-477d-a9c0-a22886657c55', accountNumber='ACC_2025f9a9', balanceMinor=0, userId='c3728636-1e89-43fa-a60c-86bb00fb1bf9', status=ACTIVE}
+
+3. Initiating deposit for Wallet A...
+Deposit initiated: Transaction{id='c24c8876-c3a4-4cf5-bf43-a0f0edc1dfa9', fromWalletId='null', toWalletId='72bea654-0418-48f1-8561-f18681b52488', amountMinor=50000, type=DEPOSIT, status=PENDING}
+
+4. Simulating payment success callback...
+Deposit completed. Balance A: 50000
+
+5. Transfer from Wallet A to Wallet B...
+Transfer completed: Transaction{id='c46813d4-e270-49f4-be71-d41a2ad59bbf', fromWalletId='72bea654-0418-48f1-8561-f18681b52488', toWalletId='2025f9a9-8e33-477d-a9c0-a22886657c55', amountMinor=20000, type=TRANSFER, status=COMPLETED}
+Balance A: 30000
+Balance B: 20000
+
+6. Withdrawal request from Wallet B...
+Withdrawal initiated: Transaction{id='59cf207d-b588-4627-a75f-b3f0c4576b35', fromWalletId='2025f9a9-8e33-477d-a9c0-a22886657c55', toWalletId='null', amountMinor=10000, type=WITHDRAWAL, status=PENDING}
+
+7. Statement for Wallet A...
+Statement A: tx count = 2, balance = 30000
+
+8. Suspend Wallet B...
+Wallet B suspended. Trying another transfer (should fail)...
+Expected failure: Wallet is not ACTIVE: SUSPENDED
+
+=== SIMULATION COMPLETED ===
