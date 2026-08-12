@@ -97,36 +97,24 @@
 ## STEP-3: VISUALIZE INTERACTION FLOWS
 
 1. **Wallet Creation:**
-   - POST /api/wallets -\> WalletController.createWallet(userId) -\>
-   - WalletService.createWallet(userId) -\> Validate one-wallet-per-user -\>
-   - Create Wallet (status=ACTIVE, balance=0) -\> Return Wallet
+   - POST /api/wallets -\> WalletController.createWallet(userId) -\> WalletService.createWallet(userId) -\> Validate one-wallet-per-user -\> Create Wallet (status=ACTIVE, balance=0) -\> Return Wallet
 
 2. **Add Money (Deposit) - Two Phase:**
    - **Phase 1 - Initiate Deposit:**
-     - POST /api/wallets/{accountNumber}/deposit -\> TransactionController.initiateDeposit(request) -\>
-     - TransactionService.initiateDeposit(request) -\> Create Transaction(PENDING, type=DEPOSIT) -\>
-     - PaymentGatewayRouter.selectProvider(request.paymentGateway, amount, "TUF")
-     - -\> provider.initiatePayment(...) -\> Return providerRef to client
+     - POST /api/wallets/{accountNumber}/deposit -\> TransactionController.initiateDeposit(request) -\> TransactionService.initiateDeposit(request) -\> Create Transaction(PENDING, type=DEPOSIT) -\> PaymentGatewayRouter.selectProvider(request.paymentGateway, amount, "TUF") -\> provider.initiatePayment(...) -\> Return providerRef to client
    - **Phase 2 - Payment Callback:**
-     - POST /api/payments/callback -\> TransactionController.handlePaymentCallback(providerRef, status) -\>
-     - TransactionService.handleDepositCallback(providerRef, status) -\> Verify signature -\>
+     - POST /api/payments/callback -\> TransactionController.handlePaymentCallback(providerRef, status) -\> TransactionService.handleDepositCallback(providerRef, status) -\> Verify signature -\> 
      - On SUCCESS: credit wallet, mark transaction COMPLETED -\> Notify user
      - On FAILURE/TIMEOUT: mark transaction FAILED -\> No balance change
 
 3. **Transfer Funds:**
-   - POST /api/transactions/transfer -\> TransactionController.transfer(request) -\>
-   - TransactionService.transfer(request) -\> Acquire locks on both wallets (see STEP-7.5) -\>
-   - Validate wallets active + amount \>= min + sufficient balance -\>
-   - Debit source -\> Credit destination -\> Create Transaction(COMPLETED, type=TRANSFER) -\> Notify user
+   - POST /api/transactions/transfer -\> TransactionController.transfer(request) -\> TransactionService.transfer(request) -\> Acquire locks on both wallets (see STEP-7.5) -\> Validate wallets active + amount \>= min + sufficient balance -\> Debit source -\> Credit destination -\> Create Transaction(COMPLETED, type=TRANSFER) -\> Notify user
 
 4. **Withdraw:**
-   - POST /api/wallets/{accountNumber}/withdraw -\> TransactionController.withdraw(accountNumber, amount) -\>
-   - TransactionService.withdraw(...) -\> Validate limits -\> Create Transaction(PENDING, type=WITHDRAWAL) -\>
-   - External payout integration (out of scope) -\> On success: debit wallet and mark COMPLETED; else FAILED
+   - POST /api/wallets/{accountNumber}/withdraw -\> TransactionController.withdraw(accountNumber, amount) -\> TransactionService.withdraw(...) -\> Validate limits -\> Create Transaction(PENDING, type=WITHDRAWAL) -\> External payout integration (out of scope) -\> On success: debit wallet and mark COMPLETED; else FAILED
 
 5. **Account Statement:**
-   - GET /api/wallets/{accountNumber}/statement?start&end -\> WalletController.getStatement(...) -\>
-   - TransactionService.getStatement(accountNumber, start, end) -\> Build AccountStatement -\> Return
+   - GET /api/wallets/{accountNumber}/statement?start&end -\> WalletController.getStatement(...) -\> TransactionService.getStatement(accountNumber, start, end) -\> Build AccountStatement -\> Return
 
 6. **Notifications:**
    - On transaction completion -\> NotificationRouter.send("email", NotificationMessage{to, subject, body})
