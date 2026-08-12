@@ -1,0 +1,15 @@
+--- Requesting ride with PRE_PAYMENT ---
+[Payment] Initiated payment for ride f9ea4491-6b7b-41cf-b441-65e16aa9047d transaction=169a1df1-5d75-49df-bd19-64cd6138559a
+Ride created with id f9ea4491-6b7b-41cf-b441-65e16aa9047d paymentId=169a1df1-5d75-49df-bd19-64cd6138559a
+[Notification] to=rider-1 subject=Payment COMPLETED body=Payment status for ride f9ea4491-6b7b-41cf-b441-65e16aa9047d is COMPLETED
+[Notification] to=driver-1 subject=New ride request body=Ride f9ea4491-6b7b-41cf-b441-65e16aa9047d is available. Please accept or decline.
+[Matching] No drivers available for ride f9ea4491-6b7b-41cf-b441-65e16aa9047d
+[Notification] to=rider-1 subject=Driver accepted body=Driver driver-1 accepted ride f9ea4491-6b7b-41cf-b441-65e16aa9047d
+[Notification] to=rider-1 subject=Trip completed body=Fare charged: 4227
+Ride status: COMPLETED fare=4227
+--- Requesting ride with POST_PAYMENT (cash) ---
+[Notification] to=driver-1 subject=New ride request body=Ride 4bba74e4-92bb-44fd-a2a1-a2e0a016867c is available. Please accept or decline.
+[Matching] No drivers available for ride 4bba74e4-92bb-44fd-a2a1-a2e0a016867c
+[Notification] to=rider-1 subject=Driver accepted body=Driver driver-1 accepted ride 4bba74e4-92bb-44fd-a2a1-a2e0a016867c
+[Notification] to=rider-1 subject=Trip completed body=Fare charged: 4227
+Cash ride status: COMPLETED fare=4227
