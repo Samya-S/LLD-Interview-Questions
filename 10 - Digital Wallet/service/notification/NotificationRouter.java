@@ -10,11 +10,15 @@ public class NotificationRouter {
         channels.put(channelName, channel);
     }
 
-    public void send(String type, NotificationMessage message) {
-        // whatsapp 
-        // email 
-        // push 
+    public void send(String channelName, NotificationMessage message) {
+        // whatsapp
+        // email
+        // push
         // sms
+        NotificationChannel channel = channels.get(channelName);
+        if (channel == null) {
+            throw new IllegalArgumentException("Notification channel not registered: " + channelName);
+        }
+        channel.send(message);
     }
 }
-
