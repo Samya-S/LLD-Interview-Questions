@@ -362,11 +362,11 @@
    - Location getLatestLocation(int driverId)
 
 ### RIDE STATE PATTERN (State Machine):
-- RideState (Interface)
-  + void accept(Ride ride, int driverId)
-  + void cancel(Ride ride, int userId, String reason)
-  + void start(Ride ride, int driverId)
-  + void complete(Ride ride, int driverId)
+- RideState (Interface)  
+  \+ void accept(Ride ride, int driverId)  
+  \+ void cancel(Ride ride, int userId, String reason)  
+  \+ void start(Ride ride, int driverId)  
+  \+ void complete(Ride ride, int driverId)
 - RequestedState (Concrete)
 - AssignedState (Concrete)
 - AcceptedState (Concrete)
@@ -377,39 +377,39 @@
 Note: State objects are created on-demand from Ride.status enum (not stored in entity). The status enum is persisted in database; state objects provide behavior encapsulation.
 
 ### DRIVER MATCHING STRATEGY:
-- DriverMatchingStrategy (Strategy Interface)
-  + List\<Driver\> findMatchingDrivers(Location pickup, List\<Driver\> candidates, int maxResults)
+- DriverMatchingStrategy (Strategy Interface)  
+  \+ List\<Driver\> findMatchingDrivers(Location pickup, List\<Driver\> candidates, int maxResults)
 - NearestDriverStrategy (Concrete - finds nearest by straight-line distance, sorts all candidates and returns top N)
 - FastestEtaStrategy (Concrete - finds fastest ETA using routing, can be added later)
-- MatchingService (Context)
-  - DriverMatchingStrategy matchingStrategy
-  + Optional\<Driver\> matchDriver(Ride ride)
+- MatchingService (Context)  
+  \- DriverMatchingStrategy matchingStrategy  
+  \+ Optional\<Driver\> matchDriver(Ride ride)
   
 Note: Strategy receives all ONLINE drivers as candidates, no explicit radius filtering at repository level
 
 ### PRICING STRATEGY:
-- PricingStrategy (Strategy Interface)
-  + long calculateFare(double distance, long duration, PricingContext context)
+- PricingStrategy (Strategy Interface)  
+  \+ long calculateFare(double distance, long duration, PricingContext context)
 - BasePricingStrategy (Concrete - base + distance + time)
 - SurgePricingStrategy (Concrete - applies surge multiplier)
-- PricingService (Context)
-  - PricingStrategy strategy
-  + void setStrategy(PricingStrategy strategy)
-  + FareEstimateResponse calculateFare(Location pickup, Location dropoff)
+- PricingService (Context)  
+  \- PricingStrategy strategy  
+  \+ void setStrategy(PricingStrategy strategy)  
+  \+ FareEstimateResponse calculateFare(Location pickup, Location dropoff)
 
 ### PAYMENT GATEWAY STRATEGY (External Providers):
-- PaymentGatewayProvider (Strategy Interface)
-  + String getName()
-  + String initiatePayment(String rideId, long amount, Map\<String, String\> paymentDetails)
-  + boolean verifyCallback(String transactionId, PaymentStatus status)
+- PaymentGatewayProvider (Strategy Interface)  
+  \+ String getName()  
+  \+ String initiatePayment(String rideId, long amount, Map\<String, String\> paymentDetails)  
+  \+ boolean verifyCallback(String transactionId, PaymentStatus status)
 - StripePaymentGatewayProvider (Concrete)
 - RazorpayPaymentGatewayProvider (Concrete)
 - PayPalPaymentGatewayProvider (Concrete)
 - MockPaymentGatewayProvider (Concrete - simulation)
-- PaymentGatewayRouter (Context/Router)
-  - Map\<String, PaymentGatewayProvider\> providers
-  + PaymentGatewayProvider selectProvider(String preferredGateway, long amount)
-  + PaymentGatewayProvider resolve(String gatewayName)
+- PaymentGatewayRouter (Context/Router)  
+  \- Map\<String, PaymentGatewayProvider\> providers  
+  \+ PaymentGatewayProvider selectProvider(String preferredGateway, long amount)  
+  \+ PaymentGatewayProvider resolve(String gatewayName)
 
 ---
 
