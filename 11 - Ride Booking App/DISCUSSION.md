@@ -131,7 +131,7 @@
 
 13. **LocationUpdateRequest**
     - driverId: int
-    - location: Location
+    - location: Location (latitude, longitude)
     - timestamp: LocalDateTime
 
 ---
