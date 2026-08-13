@@ -373,8 +373,8 @@
 - InProgressState (Concrete)
 - CompletedState (Concrete)
 - CancelledState (Concrete)
-Note: State objects are created on-demand from Ride.status enum (not stored in entity).
-The status enum is persisted in database; state objects provide behavior encapsulation.
+
+Note: State objects are created on-demand from Ride.status enum (not stored in entity). The status enum is persisted in database; state objects provide behavior encapsulation.
 
 ### DRIVER MATCHING STRATEGY:
 - DriverMatchingStrategy (Strategy Interface)
@@ -384,6 +384,7 @@ The status enum is persisted in database; state objects provide behavior encapsu
 - MatchingService (Context)
   - DriverMatchingStrategy matchingStrategy
   + Optional\<Driver\> matchDriver(Ride ride)
+  
 Note: Strategy receives all ONLINE drivers as candidates, no explicit radius filtering at repository level
 
 ### PRICING STRATEGY:
