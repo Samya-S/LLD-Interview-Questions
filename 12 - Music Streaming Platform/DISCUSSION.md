@@ -139,105 +139,42 @@
 
 ## STEP-3: VISUALISE INTERACTION FLOWS
 
-1. **Search Songs:**
-   - GET /api/search?query={query}&type={type} -\> SearchController.search(request) -\>
-   - SearchService.search(query, type) -\>
-   - SongRepository.findByTitle/Artist/Album(query) -\>
-   - Build SearchResponse -\> Return
+1. **Search Songs:**  
+   GET /api/search?query={query}&type={type} -\> SearchController.search(request) -\> SearchService.search(query, type) -\> SongRepository.findByTitle/Artist/Album(query) -\> Build SearchResponse -\> Return
 
-2. **Play Song/Album/Playlist:**
-   - POST /api/playback/play -\> PlaybackController.play(request) -\>
-   - PlaybackService.play(request) -\>
-   - Validate user subscription tier -\>
-   - Build queue from source (single song, album songs, or playlist songs) -\>
-   - Create/Update PlaybackSession(status=PLAYING, currentSongId, queue) -\>
-   - StreamingService.getStreamUrl(songId, quality) -\>
-   - Return stream URL and PlaybackStateResponse
+2. **Play Song/Album/Playlist:**  
+   POST /api/playback/play -\> PlaybackController.play(request) -\> PlaybackService.play(request) -\> Validate user subscription tier -\> Build queue from source (single song, album songs, or playlist songs) -\> Create/Update PlaybackSession(status=PLAYING, currentSongId, queue) -\> StreamingService.getStreamUrl(songId, quality) -\> Return stream URL and PlaybackStateResponse
 
-3. **Stream Audio (Chunk-based):**
-   - GET /api/stream/{songId}?start={byteOffset}&end={byteEnd} -\>
-   - StreamingController.stream(songId, start, end) -\>
-   - StreamingService.getChunk(songId, start, end) -\>
-   - Check CacheService.getChunk(songId, start, end) -\>
-   - If cached: return from cache -\>
-   - If not cached: fetch from CDN/storage -\>
-   - CacheService.putChunk(songId, start, end, chunkData) -\>
-   - Return audio chunk with HTTP 206 Partial Content
+3. **Stream Audio (Chunk-based):**  
+   GET /api/stream/{songId}?start={byteOffset}&end={byteEnd} -\> StreamingController.stream(songId, start, end) -\> StreamingService.getChunk(songId, start, end) -\> Check CacheService.getChunk(songId, start, end) -\> If cached: return from cache -\> If not cached: fetch from CDN/storage -\> CacheService.putChunk(songId, start, end, chunkData) -\> Return audio chunk with HTTP 206 Partial Content
 
-4. **Control Playback:**
-   - POST /api/playback/pause -\> PlaybackController.pause(sessionId) -\>
-   - PlaybackService.pause(sessionId) -\>
-   - Update PlaybackSession(status=PAUSED, currentPosition) -\>
-   - Return PlaybackStateResponse
+4. **Control Playback:**  
+   POST /api/playback/pause -\> PlaybackController.pause(sessionId) -\> PlaybackService.pause(sessionId) -\> Update PlaybackSession(status=PAUSED, currentPosition) -\> Return PlaybackStateResponse
    
-   - POST /api/playback/resume -\> PlaybackController.resume(sessionId) -\>
-   - PlaybackService.resume(sessionId) -\>
-   - Update PlaybackSession(status=PLAYING) -\>
-   - Return PlaybackStateResponse
+   POST /api/playback/resume -\> PlaybackController.resume(sessionId) -\> PlaybackService.resume(sessionId) -\> Update PlaybackSession(status=PLAYING) -\> Return PlaybackStateResponse
    
-   - POST /api/playback/skip-next -\> PlaybackController.skipNext(sessionId) -\>
-   - PlaybackService.skipNext(sessionId) -\>
-   - Get next song from queue (consider shuffle/repeat) -\>
-   - Update PlaybackSession(currentSongId, currentPosition=0) -\>
-   - Return PlaybackStateResponse
+   POST /api/playback/skip-next -\> PlaybackController.skipNext(sessionId) -\> PlaybackService.skipNext(sessionId) -\> Get next song from queue (consider shuffle/repeat) -\> Update PlaybackSession(currentSongId, currentPosition=0) -\> Return PlaybackStateResponse
 
-5. **Create Playlist:**
-   - POST /api/playlists -\> PlaylistController.createPlaylist(request) -\>
-   - PlaylistService.createPlaylist(userId, name, songIds) -\>
-   - Validate songs exist -\>
-   - Create Playlist(userId, name, songIds) -\>
-   - Return Playlist
+5. **Create Playlist:**  
+   POST /api/playlists -\> PlaylistController.createPlaylist(request) -\> PlaylistService.createPlaylist(userId, name, songIds) -\> Validate songs exist -\> Create Playlist(userId, name, songIds) -\> Return Playlist
 
-6. **Update Playlist:**
-   - PUT /api/playlists/{playlistId} -\> PlaylistController.updatePlaylist(playlistId, request) -\>
-   - PlaylistService.updatePlaylist(playlistId, userId, name, songIds) -\>
-   - Acquire lock on playlist (lockKey="playlist_lock_{playlistId}") -\>
-   - Validate user owns playlist -\>
-   - Update Playlist(name, songIds, updatedAt=now) -\>
-   - Release lock -\>
-   - Return Playlist
+6. **Update Playlist:**  
+   PUT /api/playlists/{playlistId} -\> PlaylistController.updatePlaylist(playlistId, request) -\> PlaylistService.updatePlaylist(playlistId, userId, name, songIds) -\> Acquire lock on playlist (lockKey="playlist_lock_{playlistId}") -\> Validate user owns playlist -\> Update Playlist(name, songIds, updatedAt=now) -\> Release lock -\> Return Playlist
 
-7. **Download Song (Offline):**
-   - POST /api/downloads -\> DownloadController.download(request) -\>
-   - DownloadService.download(userId, songId, deviceId) -\>
-   - Validate premium subscription -\>
-   - Validate device limit (max 5 devices) -\>
-   - Validate download limit (max 10,000 songs per user) -\>
-   - Create Download(status=PENDING, deviceId) -\>
-   - Async: StreamingService.downloadFullSong(songId) -\>
-   - Store in device cache -\>
-   - Update Download(status=COMPLETED, localFilePath) -\>
-   - Return Download
+7. **Download Song (Offline):**  
+   POST /api/downloads -\> DownloadController.download(request) -\> DownloadService.download(userId, songId, deviceId) -\> Validate premium subscription -\> Validate device limit (max 5 devices) -\> Validate download limit (max 10,000 songs per user) -\> Create Download(status=PENDING, deviceId) -\> Async: StreamingService.downloadFullSong(songId) -\> Store in device cache -\> Update Download(status=COMPLETED, localFilePath) -\> Return Download
 
-8. **Get Recommendations:**
-   - GET /api/recommendations -\> RecommendationController.getRecommendations(userId) -\>
-   - RecommendationService.getRecommendations(userId) -\>
-   - Get user listening history -\>
-   - RecommendationStrategy.generate(userId, history) -\>
-   - Return RecommendationResponse
+8. **Get Recommendations:**  
+   GET /api/recommendations -\> RecommendationController.getRecommendations(userId) -\> RecommendationService.getRecommendations(userId) -\> Get user listening history -\> RecommendationStrategy.generate(userId, history) -\> Return RecommendationResponse
 
-9. **Get Playback State:**
-   - GET /api/playback/state -\> PlaybackController.getState(sessionId) -\>
-   - PlaybackService.getState(sessionId) -\>
-   - Fetch PlaybackSession -\>
-   - Build PlaybackStateResponse -\>
-   - Return (client polls this for sync)
+9. **Get Playback State:**  
+   GET /api/playback/state -\> PlaybackController.getState(sessionId) -\> PlaybackService.getState(sessionId) -\> Fetch PlaybackSession -\> Build PlaybackStateResponse -\> Return (client polls this for sync)
 
-10. **Toggle Shuffle/Repeat:**
-    - POST /api/playback/shuffle -\> PlaybackController.toggleShuffle(sessionId, enabled) -\>
-    - PlaybackService.toggleShuffle(sessionId, enabled) -\>
-    - Update PlaybackSession(shuffleMode=enabled) -\>
-    - Return PlaybackStateResponse
+10. **Toggle Shuffle/Repeat:**  
+    POST /api/playback/shuffle -\> PlaybackController.toggleShuffle(sessionId, enabled) -\> PlaybackService.toggleShuffle(sessionId, enabled) -\> Update PlaybackSession(shuffleMode=enabled) -\> Return PlaybackStateResponse
 
-11. **Update Playback Position (Periodic):**
-    - POST /api/playback/position -\> PlaybackController.updatePosition(sessionId, position) -\>
-    - PlaybackService.updatePosition(sessionId, position) -\>
-    - Update PlaybackSession(currentPosition=position, lastUpdatedAt=now) -\>
-    - Fetch current song from session -\>
-    - Get song duration from SongRepository -\>
-    - If position \>= duration * 0.9 (90% played): mark as completed -\>
-    - Save/Update ListeningHistory(userId, songId, playDuration=position, completed, playedAt=now) -\>
-    - Return success (client calls this every 30-60 seconds while playing)
+11. **Update Playback Position (Periodic):**  
+    POST /api/playback/position -\> PlaybackController.updatePosition(sessionId, position) -\> PlaybackService.updatePosition(sessionId, position) -\> Update PlaybackSession(currentPosition=position, lastUpdatedAt=now) -\> Fetch current song from session -\> Get song duration from SongRepository -\> If position \>= duration * 0.9 (90% played): mark as completed -\> Save/Update ListeningHistory(userId, songId, playDuration=position, completed, playedAt=now) -\> Return success (client calls this every 30-60 seconds while playing)
 
 ---
 
