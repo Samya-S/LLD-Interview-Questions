@@ -345,7 +345,7 @@ Limitations:
 
 ---
 
-## DESIGN PATTERNS AND OOP PRINCIPLES
+## STEP-6: DESIGN PATTERNS AND OOP PRINCIPLES
 
 ### DESIGN PATTERNS USED:
 1. Repository Pattern - data access abstraction for Song/User/Playlist/Album/Artist/PlaybackSession/Download
