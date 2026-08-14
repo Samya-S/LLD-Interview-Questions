@@ -263,15 +263,15 @@
    - void release(String key)
 
 ### RECOMMENDATION STRATEGY:
-- RecommendationStrategy (Strategy Interface)
-  + List\<Song\> generate(int userId, List\<ListeningHistory\> history)
+- RecommendationStrategy (Strategy Interface)  
+  \+ List\<Song\> generate(int userId, List\<ListeningHistory\> history)
 - GenreBasedStrategy (Concrete - recommends songs from same genre as frequently listened)
 - PopularityBasedStrategy (Concrete - recommends trending/popular songs)
 - CollaborativeFilteringStrategy (Concrete - recommends based on similar users' preferences)
-- RecommendationService (Context)
-  - RecommendationStrategy strategy
-  + void setStrategy(RecommendationStrategy strategy)
-  + RecommendationResponse getRecommendations(int userId)
+- RecommendationService (Context)  
+  \- RecommendationStrategy strategy  
+  \+ void setStrategy(RecommendationStrategy strategy)  
+  \+ RecommendationResponse getRecommendations(int userId)
 
 ---
 
