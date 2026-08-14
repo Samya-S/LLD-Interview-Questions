@@ -291,10 +291,10 @@ Description:
 - Client can request multiple ranges in parallel for faster buffering
 
 Example Flow:
-1. Client requests: GET /api/stream/song123?start=0&end=1048575
+1. Client requests: GET /api/stream/song123?start=0&end=1048575  
    Headers: Range: bytes=0-1048575
-2. Server responds: HTTP 206 Partial Content
-   Headers: Content-Range: bytes 0-1048575/5242880
+2. Server responds: HTTP 206 Partial Content  
+   Headers: Content-Range: bytes 0-1048575/5242880  
    Body: First 1MB chunk of audio file
 3. Client starts playing while requesting next chunk: Range: bytes=1048576-2097151
 4. Process continues until entire file is streamed
@@ -320,10 +320,10 @@ Description:
 
 Example Flow:
 1. Client requests: GET /api/stream/song123.m3u8
-2. Server returns playlist file:
-   #EXTM3U
-   #EXTINF:10.0,segment1.ts
-   #EXTINF:10.0,segment2.ts
+2. Server returns playlist file:  
+   #EXTM3U  
+   #EXTINF:10.0,segment1.ts  
+   #EXTINF:10.0,segment2.ts  
    ...
 3. Client downloads segments sequentially: segment1.ts, segment2.ts, etc.
 4. Client plays segments as they arrive
